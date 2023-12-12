@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="MH Manuel Haqiqatkhah">
+
+<title>We Cycle</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/quarto.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="index_files/libs/quarto-html/anchor.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="index_files/libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-intro" id="toc-sec-intro" class="nav-link active" data-scroll-target="#sec-intro"><span class="toc-section-number">0</span>  Introduction</a></li>
+  <li><a href="#sec-foundations" id="toc-sec-foundations" class="nav-link" data-scroll-target="#sec-foundations"><span class="toc-section-number">1</span>  Foundations</a>
+  <ul>
+  <li><a href="#sec-visualization" id="toc-sec-visualization" class="nav-link" data-scroll-target="#sec-visualization"><span class="toc-section-number">1.1</span>  Time series visualizations</a></li>
+  <li><a href="#sec-simulation" id="toc-sec-simulation" class="nav-link" data-scroll-target="#sec-simulation"><span class="toc-section-number">1.2</span>  Simulating time series</a></li>
+  <li><a href="#sec-sim-shiny" id="toc-sec-sim-shiny" class="nav-link" data-scroll-target="#sec-sim-shiny"><span class="toc-section-number">1.3</span>  Shiny app</a></li>
+  </ul></li>
+  <li><a href="#sec-analysis" id="toc-sec-analysis" class="nav-link" data-scroll-target="#sec-analysis"><span class="toc-section-number">2</span>  Analyzing time series data</a>
+  <ul>
+  <li><a href="#sec-modeling" id="toc-sec-modeling" class="nav-link" data-scroll-target="#sec-modeling"><span class="toc-section-number">2.1</span>  Modeling time series</a></li>
+  <li><a href="#sec-fitting" id="toc-sec-fitting" class="nav-link" data-scroll-target="#sec-fitting"><span class="toc-section-number">2.2</span>  Fitting models to the whole dataset</a></li>
+  <li><a href="#sec-results" id="toc-sec-results" class="nav-link" data-scroll-target="#sec-results"><span class="toc-section-number">2.3</span>  Results</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">We Cycle</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<p class="subtitle lead">Supplementary materials</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>MH Manuel Haqiqatkhah </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="sec-intro" class="level1" data-number="0">
+<h1 data-number="0"><span class="header-section-number">0</span> Introduction</h1>
+<p>This document contains reproducible code of the manuscript on weekly patterns and dynamics. Please cite as</p>
+<blockquote class="blockquote">
+<p>citation info</p>
+</blockquote>
+<p>This document has two main sections:</p>
+<p>In <a href="#sec-foundations">Section&nbsp;1</a> (corresponding to Sections 1 and 2 of the paper), we show functions used for making the visualizations (<a href="#sec-visualization">Section&nbsp;1.1</a>) and generating simulated data the data (<a href="#sec-simulation">Section&nbsp;1.2</a>), and we provide the Shiny app accompanying the paper (<a href="#sec-sim-shiny">Section&nbsp;1.3</a>).</p>
+<p>In <a href="#sec-analysis">Section&nbsp;2</a> (corresponding to Sections 3 and 4 of the paper) we provide the code for analyzing individual time series according to different models within a single function (<a href="#sec-modeling">Section&nbsp;2.1</a>), and show the code used to run the study on the empirical data (<a href="#sec-fitting">Section&nbsp;2.2</a>), and the code used to report the results (<a href="#sec-results">Section&nbsp;2.3</a>).</p>
+<p>Since we have not permission to share the empirical data used in the study, we store the individual model fits in the <code>fits</code> folder within this repository, and their aggregated summaries in the <code>summaries</code> folder.</p>
+<p>To replicate the study from the scratch, you should first either clone the repository (using <code>git clone https://github.com/psyguy/WeCycle.git</code>) or <a href="https://github.com/psyguy/WeCycle/archive/refs/heads/main.zip">download the repository as a zip file</a> and extract it on your machine. Then you can sequentially run the <code>.R</code> files you find in the <code>scripts</code> folder. Instead of running the scripts separately, if you have <a href="https://quarto.org/docs/get-started/">Quarto installed</a>, you can also compile <code>index.qmd</code> located in the root directory using Quarto .</p>
+</section>
+<section id="sec-foundations" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Foundations</h1>
+<p>The time series <span class="math inline">\(y_t\)</span> needs to be in a data.frame (which, let us call <code>df</code>) with at least three columns:</p>
+<ul>
+<li><p><code>t</code>: indicating the time of the measurement</p></li>
+<li><p><code>y</code>: the value <span class="math inline">\(y_t\)</span> on time t</p></li>
+<li><p><code>weekday</code> (or <code>weekday_num</code>): the name (or number) of the weekday corresponding to t. In the case of the former, it should be in the form of capitalized three letter codes (<code>"Mon"</code>, <code>"Tue"</code>, …, <code>"Sun"</code>). Note that we consider Monday to be the first day of the week, and Sunday be the 0th/7th day of the week.</p></li>
+</ul>
+<p>The column <code>weekday</code> (and <code>weekday_num</code>) can be generated if the date (e.g., as <code>date</code>) is included in <code>df</code>, using <code>lubridate::wday</code> and setting:</p>
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-3_3cda31ae8eaeb70190e99fad178fb1c1">
+<details open="">
+<summary>Click to expand the code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb1-2"><a href="#cb1-2"></a>  <span class="fu">mutate</span>(<span class="at">weekday =</span> lubridate<span class="sc">::</span><span class="fu">wday</span>(date,</span>
+<span id="cb1-3"><a href="#cb1-3"></a>                                   <span class="at">week_start =</span> <span class="dv">1</span>,</span>
+<span id="cb1-4"><a href="#cb1-4"></a>                                   <span class="at">label =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1-5"><a href="#cb1-5"></a>         <span class="at">weekday_num =</span> lubridate<span class="sc">::</span><span class="fu">wday</span>(date,</span>
+<span id="cb1-6"><a href="#cb1-6"></a>                                       <span class="at">week_start =</span> <span class="dv">1</span>,</span>
+<span id="cb1-7"><a href="#cb1-7"></a>                                       <span class="at">label =</span> <span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>The missing values in the time series should be explicitly indicated with <code>NA</code> in the dataframe—that is, we should have a row for each time point—which can be achieved by:</p>
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-4_248bdfe67fa481862df50cdefbb09077">
+<details open="">
+<summary>Click to expand the code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">right_join</span>(<span class="fu">data.frame</span>(<span class="at">t =</span> <span class="fu">min</span>(df<span class="sc">$</span>t)<span class="sc">:</span><span class="fu">max</span>(df<span class="sc">$</span>t)),</span>
+<span id="cb2-3"><a href="#cb2-3"></a>             <span class="at">by =</span> <span class="st">"t"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="fu">arrange</span>(t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="sec-visualization" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="sec-visualization"><span class="header-section-number">1.1</span> Time series visualizations</h2>
+<p>The visualizations shown in discussed in the paper were plotted row-by-row using the function <code>plot_row()</code> which uses a the columns in <code>df</code> to generate a 1-row plot including the six plot we explained in the paper.</p>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Issues with <code>plot_row()</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The DOWE plot is incorrect; could not debug it yet.</p>
+</div>
+</div>
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-5_a6edd93356423c40ff8057f5c121dc54">
+<details>
+<summary>Click to expand the code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>plot_row <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">d =</span> <span class="cn">NULL</span>,</span>
+<span id="cb3-2"><a href="#cb3-2"></a>                     <span class="at">title =</span> <span class="st">"Profile"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3"></a>                     <span class="at">subtitle =</span> <span class="cn">NULL</span>,</span>
+<span id="cb3-4"><a href="#cb3-4"></a>                     <span class="at">remove_titles =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb3-5"><a href="#cb3-5"></a>                     <span class="at">remove_xlab =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb3-6"><a href="#cb3-6"></a>                     <span class="at">scale_rel =</span> <span class="fl">0.9</span>,</span>
+<span id="cb3-7"><a href="#cb3-7"></a>                     <span class="at">max_acf.lag =</span> <span class="dv">35</span>,</span>
+<span id="cb3-8"><a href="#cb3-8"></a>                     <span class="at">max_period =</span> <span class="dv">15</span>,</span>
+<span id="cb3-9"><a href="#cb3-9"></a>                     <span class="at">ymin =</span> <span class="dv">0</span><span class="fl">-0.1</span>,</span>
+<span id="cb3-10"><a href="#cb3-10"></a>                     <span class="at">ymax =</span> <span class="dv">4</span><span class="fl">+0.1</span>,</span>
+<span id="cb3-11"><a href="#cb3-11"></a>                     <span class="at">max_t =</span> <span class="dv">175</span>,</span>
+<span id="cb3-12"><a href="#cb3-12"></a>                     <span class="at">max_weeks =</span> <span class="dv">25</span>,</span>
+<span id="cb3-13"><a href="#cb3-13"></a>                     <span class="at">col_weekly =</span> <span class="st">"lightsteelblue4"</span>,</span>
+<span id="cb3-14"><a href="#cb3-14"></a>                     <span class="at">col_dowe.line =</span> <span class="st">"mediumorchid4"</span>,</span>
+<span id="cb3-15"><a href="#cb3-15"></a>                     <span class="at">col_dowe.point =</span> <span class="st">"deeppink1"</span>,</span>
+<span id="cb3-16"><a href="#cb3-16"></a>                     <span class="at">col_ts =</span> <span class="st">"lightsteelblue4"</span>,</span>
+<span id="cb3-17"><a href="#cb3-17"></a>                     <span class="at">col_ts.point =</span> <span class="st">"cornflowerblue"</span>,</span>
+<span id="cb3-18"><a href="#cb3-18"></a>                     <span class="at">col_hist =</span> <span class="st">"cornflowerblue"</span>,</span>
+<span id="cb3-19"><a href="#cb3-19"></a>                     <span class="at">col_acf =</span> <span class="st">"darkolivegreen3"</span>,</span>
+<span id="cb3-20"><a href="#cb3-20"></a>                     <span class="at">col_pacf =</span> <span class="st">"darkorange3"</span>,</span>
+<span id="cb3-21"><a href="#cb3-21"></a>                     <span class="at">col_spec =</span> <span class="st">"darkorchid4"</span>,</span>
+<span id="cb3-22"><a href="#cb3-22"></a>                     <span class="at">col_hlines =</span> <span class="st">"dimgray"</span>) {</span>
+<span id="cb3-23"><a href="#cb3-23"></a></span>
+<span id="cb3-24"><a href="#cb3-24"></a>  <span class="co"># Making sure the optimal theme is in place</span></span>
+<span id="cb3-25"><a href="#cb3-25"></a>  <span class="fu">theme_set</span>(ggthemes<span class="sc">::</span><span class="fu">theme_few</span>())</span>
+<span id="cb3-26"><a href="#cb3-26"></a></span>
+<span id="cb3-27"><a href="#cb3-27"></a>  breaks_acf <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,</span>
+<span id="cb3-28"><a href="#cb3-28"></a>                    max_acf.lag,</span>
+<span id="cb3-29"><a href="#cb3-29"></a>                    <span class="at">by =</span> <span class="dv">14</span> <span class="sc">*</span> <span class="fu">floor</span>(max_acf.lag <span class="sc">/</span> <span class="dv">7</span> <span class="sc">/</span> <span class="dv">3</span>))</span>
+<span id="cb3-30"><a href="#cb3-30"></a>  breaks_y <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">floor</span>(ymin),</span>
+<span id="cb3-31"><a href="#cb3-31"></a>                  <span class="fu">ceiling</span>(ymax)</span>
+<span id="cb3-32"><a href="#cb3-32"></a>  )</span>
+<span id="cb3-33"><a href="#cb3-33"></a>  scaleFUN <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">sprintf</span>(<span class="st">"%.1f"</span>, x)</span>
+<span id="cb3-34"><a href="#cb3-34"></a></span>
+<span id="cb3-35"><a href="#cb3-35"></a>  <span class="co"># Making plots ------------------------------------------------------------</span></span>
+<span id="cb3-36"><a href="#cb3-36"></a></span>
+<span id="cb3-37"><a href="#cb3-37"></a></span>
+<span id="cb3-38"><a href="#cb3-38"></a></span>
+<span id="cb3-39"><a href="#cb3-39"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.data.frame</span>(d))</span>
+<span id="cb3-40"><a href="#cb3-40"></a>    d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-41"><a href="#cb3-41"></a>      <span class="at">t =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(d),</span>
+<span id="cb3-42"><a href="#cb3-42"></a>      <span class="at">y =</span> d,</span>
+<span id="cb3-43"><a href="#cb3-43"></a>      <span class="at">weekday =</span> <span class="fu">rep</span>(</span>
+<span id="cb3-44"><a href="#cb3-44"></a>        <span class="fu">c</span>(<span class="st">"Mon"</span>,</span>
+<span id="cb3-45"><a href="#cb3-45"></a>          <span class="st">"Tue"</span>,</span>
+<span id="cb3-46"><a href="#cb3-46"></a>          <span class="st">"Wed"</span>,</span>
+<span id="cb3-47"><a href="#cb3-47"></a>          <span class="st">"Thu"</span>,</span>
+<span id="cb3-48"><a href="#cb3-48"></a>          <span class="st">"Fri"</span>,</span>
+<span id="cb3-49"><a href="#cb3-49"></a>          <span class="st">"Sat"</span>,</span>
+<span id="cb3-50"><a href="#cb3-50"></a>          <span class="st">"Sun"</span>),</span>
+<span id="cb3-51"><a href="#cb3-51"></a>        <span class="at">length.out =</span> <span class="fu">length</span>(d)</span>
+<span id="cb3-52"><a href="#cb3-52"></a>      ),</span>
+<span id="cb3-53"><a href="#cb3-53"></a>      <span class="at">week_num =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">ceiling</span>(<span class="fu">length</span>(d) <span class="sc">/</span> <span class="dv">7</span>), <span class="at">each =</span> <span class="dv">7</span>)[<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(d)]</span>
+<span id="cb3-54"><a href="#cb3-54"></a>    )</span>
+<span id="cb3-55"><a href="#cb3-55"></a></span>
+<span id="cb3-56"><a href="#cb3-56"></a>  d <span class="ot">&lt;-</span> d <span class="sc">%&gt;%</span></span>
+<span id="cb3-57"><a href="#cb3-57"></a>    <span class="fu">mutate</span>(<span class="at">group_mean =</span> <span class="fu">mean</span>(y,</span>
+<span id="cb3-58"><a href="#cb3-58"></a>                             <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-59"><a href="#cb3-59"></a>    <span class="fu">group_by</span>(weekday,</span>
+<span id="cb3-60"><a href="#cb3-60"></a>             <span class="at">.add =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-61"><a href="#cb3-61"></a>    <span class="fu">mutate</span>(<span class="at">weekday_mean =</span> <span class="fu">mean</span>(y,</span>
+<span id="cb3-62"><a href="#cb3-62"></a>                               <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-63"><a href="#cb3-63"></a>    <span class="fu">ungroup</span>()</span>
+<span id="cb3-64"><a href="#cb3-64"></a></span>
+<span id="cb3-65"><a href="#cb3-65"></a>  <span class="co"># Making sure the limits are not off</span></span>
+<span id="cb3-66"><a href="#cb3-66"></a>  ymin <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="fu">min</span>(d<span class="sc">$</span>y), ymin)</span>
+<span id="cb3-67"><a href="#cb3-67"></a>  ymax <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="fu">max</span>(d<span class="sc">$</span>y), ymax)</span>
+<span id="cb3-68"><a href="#cb3-68"></a></span>
+<span id="cb3-69"><a href="#cb3-69"></a>  <span class="co"># Imputing the missing values using seasonal Kalman smoothing</span></span>
+<span id="cb3-70"><a href="#cb3-70"></a>  y_imp <span class="ot">&lt;-</span> d<span class="sc">$</span>y <span class="sc">%&gt;%</span></span>
+<span id="cb3-71"><a href="#cb3-71"></a>    <span class="fu">ts</span>(<span class="at">frequency =</span> <span class="dv">7</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-72"><a href="#cb3-72"></a>    imputeTS<span class="sc">::</span><span class="fu">na_kalman</span>()</span>
+<span id="cb3-73"><a href="#cb3-73"></a>  <span class="do">#######################</span></span>
+<span id="cb3-74"><a href="#cb3-74"></a>  <span class="do">## Plotting time series</span></span>
+<span id="cb3-75"><a href="#cb3-75"></a>  <span class="do">#######################</span></span>
+<span id="cb3-76"><a href="#cb3-76"></a>  p_ts <span class="ot">&lt;-</span> d <span class="sc">%&gt;%</span></span>
+<span id="cb3-77"><a href="#cb3-77"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb3-78"><a href="#cb3-78"></a>    <span class="fu">aes</span>(<span class="at">x =</span> t,</span>
+<span id="cb3-79"><a href="#cb3-79"></a>        <span class="at">y =</span> y) <span class="sc">+</span></span>
+<span id="cb3-80"><a href="#cb3-80"></a>    <span class="fu">geom_hline</span>(</span>
+<span id="cb3-81"><a href="#cb3-81"></a>      <span class="fu">aes</span>(<span class="at">yintercept =</span> group_mean),</span>
+<span id="cb3-82"><a href="#cb3-82"></a>      <span class="at">linetype =</span> <span class="st">"dashed"</span>,</span>
+<span id="cb3-83"><a href="#cb3-83"></a>      <span class="at">linewidth =</span> <span class="fu">rel</span>(scale_rel <span class="sc">*</span> <span class="fl">0.2</span>)</span>
+<span id="cb3-84"><a href="#cb3-84"></a>    ) <span class="sc">+</span></span>
+<span id="cb3-85"><a href="#cb3-85"></a>    <span class="fu">geom_line</span>(</span>
+<span id="cb3-86"><a href="#cb3-86"></a>      <span class="at">color =</span> col_ts,</span>
+<span id="cb3-87"><a href="#cb3-87"></a>      <span class="at">alpha =</span> <span class="dv">1</span>,</span>
+<span id="cb3-88"><a href="#cb3-88"></a>      <span class="at">linewidth =</span> <span class="fu">rel</span>(scale_rel <span class="sc">*</span> <span class="fl">0.2</span>)</span>
+<span id="cb3-89"><a href="#cb3-89"></a>    ) <span class="sc">+</span></span>
+<span id="cb3-90"><a href="#cb3-90"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> y),</span>
+<span id="cb3-91"><a href="#cb3-91"></a>               <span class="at">color =</span> col_ts.point,</span>
+<span id="cb3-92"><a href="#cb3-92"></a>               <span class="at">size =</span> <span class="fu">rel</span>(scale_rel <span class="sc">*</span> <span class="fl">0.12</span>)) <span class="sc">+</span></span>
+<span id="cb3-93"><a href="#cb3-93"></a>    <span class="fu">scale_y_continuous</span>(<span class="co"># breaks = breaks_y,</span></span>
+<span id="cb3-94"><a href="#cb3-94"></a>      <span class="at">limits =</span> <span class="fu">c</span>(ymin, ymax)) <span class="sc">+</span></span>
+<span id="cb3-95"><a href="#cb3-95"></a>    <span class="fu">xlim</span>(<span class="dv">0</span>, max_t) <span class="sc">+</span></span>
+<span id="cb3-96"><a href="#cb3-96"></a>    <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Sequence plot"</span>,</span>
+<span id="cb3-97"><a href="#cb3-97"></a>         <span class="at">x =</span> <span class="st">"t"</span>,</span>
+<span id="cb3-98"><a href="#cb3-98"></a>         <span class="at">y =</span> <span class="st">"y"</span>)</span>
+<span id="cb3-99"><a href="#cb3-99"></a></span>
+<span id="cb3-100"><a href="#cb3-100"></a>  <span class="do">######################</span></span>
+<span id="cb3-101"><a href="#cb3-101"></a>  <span class="do">## Plotting histograms</span></span>
+<span id="cb3-102"><a href="#cb3-102"></a>  <span class="do">######################</span></span>
+<span id="cb3-103"><a href="#cb3-103"></a>  p_hist <span class="ot">&lt;-</span> d <span class="sc">%&gt;%</span></span>
+<span id="cb3-104"><a href="#cb3-104"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb3-105"><a href="#cb3-105"></a>    <span class="fu">aes</span>(<span class="at">x =</span> y) <span class="sc">+</span></span>
+<span id="cb3-106"><a href="#cb3-106"></a>    <span class="fu">geom_histogram</span>(</span>
+<span id="cb3-107"><a href="#cb3-107"></a>      <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(ndensity)),</span>
+<span id="cb3-108"><a href="#cb3-108"></a>      <span class="at">center =</span> <span class="dv">0</span>,</span>
+<span id="cb3-109"><a href="#cb3-109"></a>      <span class="at">bins =</span> <span class="dv">40</span>,</span>
+<span id="cb3-110"><a href="#cb3-110"></a>      <span class="at">fill =</span> col_hist</span>
+<span id="cb3-111"><a href="#cb3-111"></a>    ) <span class="sc">+</span></span>
+<span id="cb3-112"><a href="#cb3-112"></a>    <span class="fu">geom_vline</span>(</span>
+<span id="cb3-113"><a href="#cb3-113"></a>      <span class="fu">aes</span>(<span class="at">xintercept =</span> group_mean),</span>
+<span id="cb3-114"><a href="#cb3-114"></a>      <span class="at">linetype =</span> <span class="st">"dashed"</span>,</span>
+<span id="cb3-115"><a href="#cb3-115"></a>      <span class="at">linewidth =</span> <span class="fu">rel</span>(scale_rel <span class="sc">*</span> <span class="fl">0.2</span>)</span>
+<span id="cb3-116"><a href="#cb3-116"></a>    ) <span class="sc">+</span></span>
+<span id="cb3-117"><a href="#cb3-117"></a>    <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Distribution"</span>,</span>
+<span id="cb3-118"><a href="#cb3-118"></a>         <span class="at">x =</span> <span class="st">"y"</span>,</span>
+<span id="cb3-119"><a href="#cb3-119"></a>         <span class="at">y =</span> <span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb3-120"><a href="#cb3-120"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> breaks_y) <span class="sc">+</span></span>
+<span id="cb3-121"><a href="#cb3-121"></a>    <span class="fu">xlim</span>(ymin, ymax) <span class="sc">+</span></span>
+<span id="cb3-122"><a href="#cb3-122"></a>    <span class="fu">theme</span>(</span>
+<span id="cb3-123"><a href="#cb3-123"></a>      <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb3-124"><a href="#cb3-124"></a>      <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb3-125"><a href="#cb3-125"></a>      <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb3-126"><a href="#cb3-126"></a>      <span class="at">axis.line.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb3-127"><a href="#cb3-127"></a>      <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb3-128"><a href="#cb3-128"></a>    )</span>
+<span id="cb3-129"><a href="#cb3-129"></a></span>
+<span id="cb3-130"><a href="#cb3-130"></a></span>
+<span id="cb3-131"><a href="#cb3-131"></a>  <span class="do">################</span></span>
+<span id="cb3-132"><a href="#cb3-132"></a>  <span class="do">## Plotting DOWE</span></span>
+<span id="cb3-133"><a href="#cb3-133"></a>  <span class="do">################</span></span>
+<span id="cb3-134"><a href="#cb3-134"></a>  p_dowe <span class="ot">&lt;-</span> d <span class="sc">%&gt;%</span></span>
+<span id="cb3-135"><a href="#cb3-135"></a>    <span class="fu">group_by</span>(week_num,</span>
+<span id="cb3-136"><a href="#cb3-136"></a>             <span class="at">.add =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-137"><a href="#cb3-137"></a>    <span class="fu">filter</span>(week_num <span class="sc">&lt;=</span> max_weeks) <span class="sc">%&gt;%</span></span>
+<span id="cb3-138"><a href="#cb3-138"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb3-139"><a href="#cb3-139"></a>    <span class="fu">aes</span>(<span class="at">x =</span> weekday,</span>
+<span id="cb3-140"><a href="#cb3-140"></a>        <span class="at">y =</span> y,</span>
+<span id="cb3-141"><a href="#cb3-141"></a>        <span class="at">group =</span> week_num) <span class="sc">+</span></span>
+<span id="cb3-142"><a href="#cb3-142"></a>    <span class="fu">geom_hline</span>(</span>
+<span id="cb3-143"><a href="#cb3-143"></a>      <span class="fu">aes</span>(<span class="at">yintercept =</span> group_mean),</span>
+<span id="cb3-144"><a href="#cb3-144"></a>      <span class="at">linetype =</span> <span class="st">"dashed"</span>,</span>
+<span id="cb3-145"><a href="#cb3-145"></a>      <span class="at">linewidth =</span> <span class="fu">rel</span>(scale_rel <span class="sc">*</span> <span class="fl">0.2</span>),</span>
+<span id="cb3-146"><a href="#cb3-146"></a>      <span class="at">alpha =</span> <span class="dv">1</span></span>
+<span id="cb3-147"><a href="#cb3-147"></a>    ) <span class="sc">+</span></span>
+<span id="cb3-148"><a href="#cb3-148"></a>    <span class="fu">geom_line</span>(</span>
+<span id="cb3-149"><a href="#cb3-149"></a>      <span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
+<span id="cb3-150"><a href="#cb3-150"></a>      <span class="at">color =</span> col_weekly,</span>
+<span id="cb3-151"><a href="#cb3-151"></a>      <span class="at">linewidth =</span> <span class="fu">rel</span>(scale_rel <span class="sc">*</span> <span class="fl">0.4</span>)</span>
+<span id="cb3-152"><a href="#cb3-152"></a>    ) <span class="sc">+</span></span>
+<span id="cb3-153"><a href="#cb3-153"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> y),</span>
+<span id="cb3-154"><a href="#cb3-154"></a>               <span class="at">alpha =</span> <span class="fl">0.6</span>,</span>
+<span id="cb3-155"><a href="#cb3-155"></a>               <span class="at">color =</span> col_ts.point,</span>
+<span id="cb3-156"><a href="#cb3-156"></a>               <span class="at">size =</span> <span class="fu">rel</span>(scale_rel <span class="sc">*</span> <span class="fl">0.12</span>)) <span class="sc">+</span></span>
+<span id="cb3-157"><a href="#cb3-157"></a>    <span class="fu">geom_line</span>(</span>
+<span id="cb3-158"><a href="#cb3-158"></a>      <span class="fu">aes</span>(<span class="at">y =</span> weekday_mean),</span>
+<span id="cb3-159"><a href="#cb3-159"></a>      <span class="at">color =</span> col_dowe.line,</span>
+<span id="cb3-160"><a href="#cb3-160"></a>      <span class="at">alpha =</span> <span class="dv">1</span>,</span>
+<span id="cb3-161"><a href="#cb3-161"></a>      <span class="at">linewidth =</span> <span class="fu">rel</span>(scale_rel <span class="sc">*</span> <span class="dv">1</span>)</span>
+<span id="cb3-162"><a href="#cb3-162"></a>    ) <span class="sc">+</span></span>
+<span id="cb3-163"><a href="#cb3-163"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> weekday_mean),</span>
+<span id="cb3-164"><a href="#cb3-164"></a>               <span class="at">color =</span> col_dowe.point,</span>
+<span id="cb3-165"><a href="#cb3-165"></a>               <span class="at">size =</span> <span class="fu">rel</span>(scale_rel <span class="sc">*</span> <span class="fl">0.8</span>)) <span class="sc">+</span></span>
+<span id="cb3-166"><a href="#cb3-166"></a>    <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Weekly plot"</span>,</span>
+<span id="cb3-167"><a href="#cb3-167"></a>         <span class="at">x =</span> <span class="st">"Weekdays"</span>,</span>
+<span id="cb3-168"><a href="#cb3-168"></a>         <span class="at">y =</span> <span class="st">"y"</span>) <span class="sc">+</span></span>
+<span id="cb3-169"><a href="#cb3-169"></a>    <span class="fu">scale_y_continuous</span>(<span class="co">#breaks = breaks_y,</span></span>
+<span id="cb3-170"><a href="#cb3-170"></a>      <span class="at">limits =</span> <span class="fu">c</span>(ymin, ymax)) <span class="sc">+</span></span>
+<span id="cb3-171"><a href="#cb3-171"></a>    <span class="fu">theme</span>(<span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb3-172"><a href="#cb3-172"></a>          <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb3-173"><a href="#cb3-173"></a>          <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>,</span>
+<span id="cb3-174"><a href="#cb3-174"></a>                                     <span class="at">size =</span> <span class="fu">rel</span>(<span class="dv">1</span> <span class="sc">*</span> scale_rel)))</span>
+<span id="cb3-175"><a href="#cb3-175"></a></span>
+<span id="cb3-176"><a href="#cb3-176"></a></span>
+<span id="cb3-177"><a href="#cb3-177"></a>  <span class="do">##############################</span></span>
+<span id="cb3-178"><a href="#cb3-178"></a>  <span class="do">## Plotting frequency spectrum</span></span>
+<span id="cb3-179"><a href="#cb3-179"></a>  <span class="do">##############################</span></span>
+<span id="cb3-180"><a href="#cb3-180"></a></span>
+<span id="cb3-181"><a href="#cb3-181"></a>  <span class="do">## Calculate Fourier components</span></span>
+<span id="cb3-182"><a href="#cb3-182"></a>  y_imp <span class="ot">&lt;-</span> y_imp <span class="sc">%&gt;%</span> as.numeric</span>
+<span id="cb3-183"><a href="#cb3-183"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(y_imp)</span>
+<span id="cb3-184"><a href="#cb3-184"></a>  Freq <span class="ot">=</span> (<span class="dv">1</span><span class="sc">:</span>n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">/</span> n</span>
+<span id="cb3-185"><a href="#cb3-185"></a>  var_component <span class="ot">&lt;-</span> <span class="fu">Mod</span>(<span class="fu">fft</span>(<span class="fu">scale</span>(y_imp, <span class="at">scale =</span> <span class="cn">FALSE</span>))) <span class="sc">^</span> <span class="dv">2</span> <span class="sc">/</span> n<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb3-186"><a href="#cb3-186"></a>  df_fourier <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Freq =</span> Freq,</span>
+<span id="cb3-187"><a href="#cb3-187"></a>                           <span class="at">rel_power =</span> <span class="dv">100</span><span class="sc">*</span>var_component<span class="sc">/</span><span class="fu">var</span>(y_imp))<span class="sc">%&gt;%</span></span>
+<span id="cb3-188"><a href="#cb3-188"></a>    <span class="fu">mutate</span>(<span class="at">Period =</span> <span class="fu">round</span>(<span class="dv">1</span> <span class="sc">/</span> Freq, <span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-189"><a href="#cb3-189"></a>    <span class="fu">filter</span>(Freq <span class="sc">!=</span> <span class="dv">0</span>,</span>
+<span id="cb3-190"><a href="#cb3-190"></a>           Freq <span class="sc">&lt;=</span> <span class="fl">0.5</span>,</span>
+<span id="cb3-191"><a href="#cb3-191"></a>           Period <span class="sc">&lt;=</span> max_period) <span class="sc">%&gt;%</span></span>
+<span id="cb3-192"><a href="#cb3-192"></a>    <span class="fu">summarise</span>(<span class="at">rel_power =</span> <span class="fu">sum</span>(rel_power),</span>
+<span id="cb3-193"><a href="#cb3-193"></a>              <span class="at">.by =</span> Period) <span class="sc">%&gt;%</span></span>
+<span id="cb3-194"><a href="#cb3-194"></a>    <span class="fu">mutate</span>(<span class="at">Freq =</span> <span class="dv">1</span> <span class="sc">/</span> Period,</span>
+<span id="cb3-195"><a href="#cb3-195"></a>           <span class="at">.before =</span> <span class="dv">1</span>)</span>
+<span id="cb3-196"><a href="#cb3-196"></a></span>
+<span id="cb3-197"><a href="#cb3-197"></a>  max_var_component <span class="ot">&lt;-</span> <span class="fu">max</span>(df_fourier<span class="sc">$</span>rel_power)</span>
+<span id="cb3-198"><a href="#cb3-198"></a></span>
+<span id="cb3-199"><a href="#cb3-199"></a>  p_spec <span class="ot">&lt;-</span> df_fourier <span class="sc">%&gt;%</span></span>
+<span id="cb3-200"><a href="#cb3-200"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb3-201"><a href="#cb3-201"></a>    <span class="fu">aes</span>(</span>
+<span id="cb3-202"><a href="#cb3-202"></a>      <span class="at">x =</span> Period,</span>
+<span id="cb3-203"><a href="#cb3-203"></a>      <span class="at">xend =</span> Period,</span>
+<span id="cb3-204"><a href="#cb3-204"></a>      <span class="at">y =</span> rel_power,</span>
+<span id="cb3-205"><a href="#cb3-205"></a>      <span class="at">yend =</span> <span class="dv">0</span></span>
+<span id="cb3-206"><a href="#cb3-206"></a>    ) <span class="sc">+</span></span>
+<span id="cb3-207"><a href="#cb3-207"></a>    <span class="fu">geom_rect</span>(</span>
+<span id="cb3-208"><a href="#cb3-208"></a>      <span class="fu">aes</span>(</span>
+<span id="cb3-209"><a href="#cb3-209"></a>        <span class="at">xmin =</span> <span class="fl">6.5</span>,</span>
+<span id="cb3-210"><a href="#cb3-210"></a>        <span class="at">xmax =</span> <span class="fl">7.5</span>,</span>
+<span id="cb3-211"><a href="#cb3-211"></a>        <span class="at">ymin =</span> <span class="dv">0</span>,</span>
+<span id="cb3-212"><a href="#cb3-212"></a>        <span class="at">ymax =</span> <span class="cn">Inf</span></span>
+<span id="cb3-213"><a href="#cb3-213"></a>      ),</span>
+<span id="cb3-214"><a href="#cb3-214"></a>      <span class="at">alpha =</span> <span class="fl">0.7</span>,</span>
+<span id="cb3-215"><a href="#cb3-215"></a>      <span class="at">fill =</span> <span class="st">"azure2"</span></span>
+<span id="cb3-216"><a href="#cb3-216"></a>    ) <span class="sc">+</span></span>
+<span id="cb3-217"><a href="#cb3-217"></a>    <span class="fu">geom_segment</span>(<span class="at">linewidth =</span> <span class="fu">rel</span>(scale_rel <span class="sc">*</span> <span class="fl">0.5</span>),</span>
+<span id="cb3-218"><a href="#cb3-218"></a>                 <span class="at">color =</span> col_spec) <span class="sc">+</span></span>
+<span id="cb3-219"><a href="#cb3-219"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span></span>
+<span id="cb3-220"><a href="#cb3-220"></a>                         <span class="fu">seq</span>(<span class="dv">0</span>,</span>
+<span id="cb3-221"><a href="#cb3-221"></a>                             max_period <span class="sc">-</span> <span class="fl">0.5</span>,</span>
+<span id="cb3-222"><a href="#cb3-222"></a>                             <span class="dv">7</span>)) <span class="sc">+</span></span>
+<span id="cb3-223"><a href="#cb3-223"></a>    <span class="fu">scale_y_continuous</span>(<span class="co"># labels = scaleFUN,</span></span>
+<span id="cb3-224"><a href="#cb3-224"></a>      <span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">breaks_pretty</span>(<span class="dv">4</span>),</span>
+<span id="cb3-225"><a href="#cb3-225"></a>      <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(<span class="dv">1</span>, max_var_component))) <span class="sc">+</span></span>
+<span id="cb3-226"><a href="#cb3-226"></a>    <span class="fu">theme</span>(</span>
+<span id="cb3-227"><a href="#cb3-227"></a>      <span class="co"># axis.title.y = element_blank(),</span></span>
+<span id="cb3-228"><a href="#cb3-228"></a>      <span class="co"># axis.ticks.y = element_blank(),</span></span>
+<span id="cb3-229"><a href="#cb3-229"></a>      <span class="co"># axis.line.y = element_blank(),</span></span>
+<span id="cb3-230"><a href="#cb3-230"></a>      <span class="co"># axis.text.y = element_blank(),</span></span>
+<span id="cb3-231"><a href="#cb3-231"></a>      <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb3-232"><a href="#cb3-232"></a>    ) <span class="sc">+</span></span>
+<span id="cb3-233"><a href="#cb3-233"></a>    <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Power spectral density"</span>,</span>
+<span id="cb3-234"><a href="#cb3-234"></a>         <span class="at">x =</span> <span class="st">"Period (in days)"</span>,</span>
+<span id="cb3-235"><a href="#cb3-235"></a>         <span class="at">y =</span> <span class="st">"% total power"</span>)</span>
+<span id="cb3-236"><a href="#cb3-236"></a></span>
+<span id="cb3-237"><a href="#cb3-237"></a>  <span class="cf">if</span>(max_var_component <span class="sc">&lt;</span> <span class="dv">1</span>)</span>
+<span id="cb3-238"><a href="#cb3-238"></a>    max_var_component <span class="ot">&lt;-</span> max_var_component <span class="sc">+</span></span>
+<span id="cb3-239"><a href="#cb3-239"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</span>
+<span id="cb3-240"><a href="#cb3-240"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb3-241"><a href="#cb3-241"></a>  <span class="do">######################</span></span>
+<span id="cb3-242"><a href="#cb3-242"></a>  <span class="do">## Plotting ACF &amp; PACF</span></span>
+<span id="cb3-243"><a href="#cb3-243"></a>  <span class="do">######################</span></span>
+<span id="cb3-244"><a href="#cb3-244"></a></span>
+<span id="cb3-245"><a href="#cb3-245"></a>  df_acf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-246"><a href="#cb3-246"></a>    <span class="at">lag =</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span>max_acf.lag),</span>
+<span id="cb3-247"><a href="#cb3-247"></a>    <span class="at">acf =</span> stats<span class="sc">::</span><span class="fu">acf</span>(y_imp,</span>
+<span id="cb3-248"><a href="#cb3-248"></a>                     <span class="at">lag.max =</span> max_acf.lag,</span>
+<span id="cb3-249"><a href="#cb3-249"></a>                     <span class="at">plot =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>acf <span class="sc">%&gt;%</span> <span class="fu">as.numeric</span>(),</span>
+<span id="cb3-250"><a href="#cb3-250"></a>    <span class="at">pacf =</span> stats<span class="sc">::</span><span class="fu">pacf</span>(y_imp,</span>
+<span id="cb3-251"><a href="#cb3-251"></a>                       <span class="at">lag.max =</span> max_acf.lag,</span>
+<span id="cb3-252"><a href="#cb3-252"></a>                       <span class="at">plot =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>acf <span class="sc">%&gt;%</span></span>
+<span id="cb3-253"><a href="#cb3-253"></a>      <span class="fu">as.numeric</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb3-254"><a href="#cb3-254"></a>      <span class="fu">c</span>(<span class="dv">0</span>, .)</span>
+<span id="cb3-255"><a href="#cb3-255"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-256"><a href="#cb3-256"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> acf<span class="sc">:</span>pacf,</span>
+<span id="cb3-257"><a href="#cb3-257"></a>                 <span class="at">names_to =</span> <span class="st">"kind"</span>,</span>
+<span id="cb3-258"><a href="#cb3-258"></a>                 <span class="at">values_to =</span> <span class="st">"value"</span>)</span>
+<span id="cb3-259"><a href="#cb3-259"></a></span>
+<span id="cb3-260"><a href="#cb3-260"></a></span>
+<span id="cb3-261"><a href="#cb3-261"></a>  p_acf <span class="ot">&lt;-</span> df_acf <span class="sc">%&gt;%</span></span>
+<span id="cb3-262"><a href="#cb3-262"></a>    <span class="fu">filter</span>(kind <span class="sc">==</span> <span class="st">"acf"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-263"><a href="#cb3-263"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> lag,</span>
+<span id="cb3-264"><a href="#cb3-264"></a>               <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb3-265"><a href="#cb3-265"></a>    <span class="fu">geom_segment</span>(</span>
+<span id="cb3-266"><a href="#cb3-266"></a>      <span class="fu">aes</span>(</span>
+<span id="cb3-267"><a href="#cb3-267"></a>        <span class="at">x =</span> lag,</span>
+<span id="cb3-268"><a href="#cb3-268"></a>        <span class="at">xend =</span> lag,</span>
+<span id="cb3-269"><a href="#cb3-269"></a>        <span class="at">y =</span> <span class="dv">0</span>,</span>
+<span id="cb3-270"><a href="#cb3-270"></a>        <span class="at">yend =</span> value</span>
+<span id="cb3-271"><a href="#cb3-271"></a>      ),</span>
+<span id="cb3-272"><a href="#cb3-272"></a>      <span class="at">linewidth =</span> <span class="fu">rel</span>(scale_rel <span class="sc">*</span> <span class="dv">35</span> <span class="sc">/</span> max_acf.lag <span class="sc">/</span> <span class="dv">2</span>),</span>
+<span id="cb3-273"><a href="#cb3-273"></a>      <span class="at">color =</span> col_acf,</span>
+<span id="cb3-274"><a href="#cb3-274"></a>      <span class="at">lineend =</span> <span class="st">"butt"</span></span>
+<span id="cb3-275"><a href="#cb3-275"></a>    ) <span class="sc">+</span></span>
+<span id="cb3-276"><a href="#cb3-276"></a>    <span class="fu">geom_hline</span>(</span>
+<span id="cb3-277"><a href="#cb3-277"></a>      <span class="at">yintercept =</span> <span class="dv">0</span>,</span>
+<span id="cb3-278"><a href="#cb3-278"></a>      <span class="at">linewidth =</span> <span class="fu">rel</span>(scale_rel <span class="sc">*</span> <span class="fl">0.3</span>),</span>
+<span id="cb3-279"><a href="#cb3-279"></a>      <span class="at">linetype =</span> <span class="st">"solid"</span>,</span>
+<span id="cb3-280"><a href="#cb3-280"></a>      <span class="at">color =</span> col_hlines</span>
+<span id="cb3-281"><a href="#cb3-281"></a>    ) <span class="sc">+</span></span>
+<span id="cb3-282"><a href="#cb3-282"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> breaks_acf) <span class="sc">+</span></span>
+<span id="cb3-283"><a href="#cb3-283"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">5</span>, <span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">1</span>),</span>
+<span id="cb3-284"><a href="#cb3-284"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">25</span>, <span class="fl">1.1</span>)) <span class="sc">+</span></span>
+<span id="cb3-285"><a href="#cb3-285"></a>    <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"ACF"</span>,</span>
+<span id="cb3-286"><a href="#cb3-286"></a>         <span class="at">x =</span> <span class="st">"Lag"</span>,</span>
+<span id="cb3-287"><a href="#cb3-287"></a>         <span class="at">y =</span> <span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb3-288"><a href="#cb3-288"></a>    <span class="fu">theme</span>(</span>
+<span id="cb3-289"><a href="#cb3-289"></a>      <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb3-290"><a href="#cb3-290"></a>      <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb3-291"><a href="#cb3-291"></a>    )</span>
+<span id="cb3-292"><a href="#cb3-292"></a></span>
+<span id="cb3-293"><a href="#cb3-293"></a>  p_pacf <span class="ot">&lt;-</span> df_acf <span class="sc">%&gt;%</span></span>
+<span id="cb3-294"><a href="#cb3-294"></a>    <span class="fu">filter</span>(kind <span class="sc">==</span> <span class="st">"pacf"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-295"><a href="#cb3-295"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> lag,</span>
+<span id="cb3-296"><a href="#cb3-296"></a>               <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb3-297"><a href="#cb3-297"></a>    <span class="fu">geom_segment</span>(</span>
+<span id="cb3-298"><a href="#cb3-298"></a>      <span class="fu">aes</span>(</span>
+<span id="cb3-299"><a href="#cb3-299"></a>        <span class="at">x =</span> lag,</span>
+<span id="cb3-300"><a href="#cb3-300"></a>        <span class="at">xend =</span> lag,</span>
+<span id="cb3-301"><a href="#cb3-301"></a>        <span class="at">y =</span> <span class="dv">0</span>,</span>
+<span id="cb3-302"><a href="#cb3-302"></a>        <span class="at">yend =</span> value</span>
+<span id="cb3-303"><a href="#cb3-303"></a>      ),</span>
+<span id="cb3-304"><a href="#cb3-304"></a>      <span class="at">linewidth =</span> <span class="fu">rel</span>(scale_rel <span class="sc">*</span> <span class="dv">35</span> <span class="sc">/</span> max_acf.lag <span class="sc">/</span> <span class="dv">2</span>),</span>
+<span id="cb3-305"><a href="#cb3-305"></a>      <span class="at">color =</span> col_pacf,</span>
+<span id="cb3-306"><a href="#cb3-306"></a>      <span class="at">lineend =</span> <span class="st">"butt"</span></span>
+<span id="cb3-307"><a href="#cb3-307"></a>    ) <span class="sc">+</span></span>
+<span id="cb3-308"><a href="#cb3-308"></a>    <span class="fu">geom_hline</span>(</span>
+<span id="cb3-309"><a href="#cb3-309"></a>      <span class="at">yintercept =</span> <span class="dv">0</span>,</span>
+<span id="cb3-310"><a href="#cb3-310"></a>      <span class="at">linewidth =</span> <span class="fu">rel</span>(scale_rel <span class="sc">*</span> <span class="fl">0.3</span>),</span>
+<span id="cb3-311"><a href="#cb3-311"></a>      <span class="at">linetype =</span> <span class="st">"solid"</span>,</span>
+<span id="cb3-312"><a href="#cb3-312"></a>      <span class="at">color =</span> col_hlines</span>
+<span id="cb3-313"><a href="#cb3-313"></a>    ) <span class="sc">+</span></span>
+<span id="cb3-314"><a href="#cb3-314"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> breaks_acf) <span class="sc">+</span></span>
+<span id="cb3-315"><a href="#cb3-315"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">5</span>, <span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">1</span>),</span>
+<span id="cb3-316"><a href="#cb3-316"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">25</span>, <span class="fl">1.1</span>)) <span class="sc">+</span></span>
+<span id="cb3-317"><a href="#cb3-317"></a>    <span class="co"># theme(</span></span>
+<span id="cb3-318"><a href="#cb3-318"></a>    <span class="co">#   axis.title.y = element_blank(),</span></span>
+<span id="cb3-319"><a href="#cb3-319"></a>    <span class="co">#   axis.ticks.y = element_blank(),</span></span>
+<span id="cb3-320"><a href="#cb3-320"></a>    <span class="co">#   axis.line.y = element_blank(),</span></span>
+<span id="cb3-321"><a href="#cb3-321"></a>    <span class="co">#   axis.text.y = element_blank()</span></span>
+<span id="cb3-322"><a href="#cb3-322"></a>    <span class="co"># ) +s</span></span>
+<span id="cb3-323"><a href="#cb3-323"></a>    <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"PACF"</span>,</span>
+<span id="cb3-324"><a href="#cb3-324"></a>         <span class="at">x =</span> <span class="st">"Lag"</span>,</span>
+<span id="cb3-325"><a href="#cb3-325"></a>         <span class="at">y =</span> <span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb3-326"><a href="#cb3-326"></a>    <span class="fu">theme</span>(</span>
+<span id="cb3-327"><a href="#cb3-327"></a>      <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb3-328"><a href="#cb3-328"></a>      <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb3-329"><a href="#cb3-329"></a>    )</span>
+<span id="cb3-330"><a href="#cb3-330"></a></span>
+<span id="cb3-331"><a href="#cb3-331"></a></span>
+<span id="cb3-332"><a href="#cb3-332"></a>  p_out <span class="ot">&lt;-</span> p_hist <span class="sc">+</span> p_ts <span class="sc">+</span> p_dowe <span class="sc">+</span> p_spec <span class="sc">+</span> p_acf <span class="sc">+</span> p_pacf <span class="sc">+</span></span>
+<span id="cb3-333"><a href="#cb3-333"></a>    <span class="fu">plot_layout</span>(<span class="at">widths =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb3-334"><a href="#cb3-334"></a></span>
+<span id="cb3-335"><a href="#cb3-335"></a>  <span class="cf">if</span> (remove_titles)</span>
+<span id="cb3-336"><a href="#cb3-336"></a>    p_out <span class="ot">&lt;-</span> p_out <span class="sc">&amp;</span> <span class="fu">theme</span>(<span class="at">plot.subtitle =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb3-337"><a href="#cb3-337"></a>  <span class="cf">if</span> (remove_xlab)</span>
+<span id="cb3-338"><a href="#cb3-338"></a>    p_out <span class="ot">&lt;-</span> p_out <span class="sc">&amp;</span> <span class="fu">xlab</span>(<span class="cn">NULL</span>)</span>
+<span id="cb3-339"><a href="#cb3-339"></a></span>
+<span id="cb3-340"><a href="#cb3-340"></a>  p_out <span class="ot">&lt;-</span> p_out <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">title =</span> title,</span>
+<span id="cb3-341"><a href="#cb3-341"></a>                                   <span class="at">subtitle =</span> subtitle)</span>
+<span id="cb3-342"><a href="#cb3-342"></a></span>
+<span id="cb3-343"><a href="#cb3-343"></a>  <span class="fu">return</span>(p_out)</span>
+<span id="cb3-344"><a href="#cb3-344"></a></span>
+<span id="cb3-345"><a href="#cb3-345"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>By default, the titles (what each plot shows) and the labels under the horizontal axes of plots are ommited from the output (because of the default arguments <code>remove_titles = TRUE</code> and <code>remove_xlab = TRUE</code>). The other default values used in the plotting argumentsare (especially the dimensions) makes the plots render in good proportions when the plot is saved with a <code>.svg</code> (good for putting in Word or online) or <code>.pdf</code> (good for LaTeX manuscripts) the width is 35cm and the height is around 5-5.5cm.</p>
+<p>When plotting more than two rows, it is suggested to set the top and bottom rows to have 10% larger height. For instance, to make a plot with three rows, it is advised to set</p>
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-6_b706908d467e975f485340ef5d99d569">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>l_p <span class="ot">&lt;-</span> cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(</span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">plot_row</span>(df1, <span class="at">remove_titles =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">plot_row</span>(df2),</span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">plot_row</span>(df3, <span class="at">remove_xlab =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="at">rel_heights =</span> <span class="fu">c</span>(<span class="fl">1.1</span>, <span class="dv">1</span>, <span class="fl">1.1</span>),</span>
+<span id="cb4-6"><a href="#cb4-6"></a>  <span class="at">ncol =</span> <span class="dv">1</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>)</span>
+<span id="cb4-8"><a href="#cb4-8"></a></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="fu">ggsave</span>(</span>
+<span id="cb4-10"><a href="#cb4-10"></a>  <span class="st">"fig-3rows"</span>,</span>
+<span id="cb4-11"><a href="#cb4-11"></a>  l_p,</span>
+<span id="cb4-12"><a href="#cb4-12"></a>  <span class="at">width =</span> <span class="dv">35</span>,</span>
+<span id="cb4-13"><a href="#cb4-13"></a>  <span class="at">height =</span> <span class="fl">5.5</span><span class="sc">*</span><span class="dv">3</span>,</span>
+<span id="cb4-14"><a href="#cb4-14"></a>  <span class="at">units =</span> <span class="st">"cm"</span></span>
+<span id="cb4-15"><a href="#cb4-15"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="sec-simulation" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="sec-simulation"><span class="header-section-number">1.2</span> Simulating time series</h2>
+<p>Pure time series (i.e., without time index and weekday) are generated using <code>m_sim()</code> that generate <span class="math inline">\(y_t = \mu_t + a_t\)</span> by adding a deterministic vector <code>mu_t</code> to a stochastic time series <code>a_t</code>. generated from a random seed set by <code>seed</code> argument. The arguments <code>burnin</code> indicate the number of samples thrown away as bur-in samples.</p>
+<p>The function generates <span class="math inline">\(\mu_t\)</span> based on the weekday means (day-of-week effects) as a vector <code>dowe</code> (default: all zeros), and can adds a harmonic wave with overal mean <code>c</code> (default: 0), amplitude <code>amp</code> (default: 0), and peak shift <code>peak_shift</code> (default: 1, for Monday). Default values entail a mean structure <span class="math inline">\(\mu_t = c\)</span>, and by setting nonzero values to either <code>dowe</code> or <code>amp</code>, <code>mu_t</code> will get the detailed <span class="math inline">\(\mu_t = D_t\)</span> or harmonic <span class="math inline">\(\mu_t = H_t\)</span> mean structures. In the function we allow combining the mean structures, to allow users investigate the effect of adding a harmonic wave on top of a currently set DOWE, or changing deviating DOWEs of a few days beyond the harmonic wave,</p>
+<p>The stochastic component <span class="math inline">\(a_t\)</span> is generated using <code>sarima::sim_sarima()</code>; since this function cannot generate white noise process, if no SAR[I]MA component is specified, <code>a_t</code> is generated manually. In this function we allow including non-seasonal and seasonal differencing in the model (not discussed in the paper, but implemented in the Shiny app).</p>
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-7_7b11e1a55b688228d1b9ca8a1364af2a">
+<details>
+<summary>Click to expand the code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>m_sim <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">10000</span>,</span>
+<span id="cb5-2"><a href="#cb5-2"></a>                  <span class="at">ar =</span> <span class="dv">0</span>,</span>
+<span id="cb5-3"><a href="#cb5-3"></a>                  <span class="at">ma =</span> <span class="dv">0</span>,</span>
+<span id="cb5-4"><a href="#cb5-4"></a>                  <span class="at">sar =</span> <span class="dv">0</span>,</span>
+<span id="cb5-5"><a href="#cb5-5"></a>                  <span class="at">sma =</span> <span class="dv">0</span>,</span>
+<span id="cb5-6"><a href="#cb5-6"></a>                  <span class="at">c =</span> <span class="dv">0</span>,</span>
+<span id="cb5-7"><a href="#cb5-7"></a>                  <span class="at">iorder =</span> <span class="dv">0</span>,</span>
+<span id="cb5-8"><a href="#cb5-8"></a>                  <span class="at">siorder =</span> <span class="dv">0</span>,</span>
+<span id="cb5-9"><a href="#cb5-9"></a>                  <span class="at">sigma2 =</span> <span class="dv">4</span>,</span>
+<span id="cb5-10"><a href="#cb5-10"></a>                  <span class="at">dowe =</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">7</span>),</span>
+<span id="cb5-11"><a href="#cb5-11"></a>                  <span class="at">amp =</span> <span class="dv">0</span>,</span>
+<span id="cb5-12"><a href="#cb5-12"></a>                  <span class="at">peak_shift =</span> <span class="dv">1</span>,</span>
+<span id="cb5-13"><a href="#cb5-13"></a>                  <span class="at">burnin =</span> <span class="dv">500</span>,</span>
+<span id="cb5-14"><a href="#cb5-14"></a>                  <span class="at">seed =</span> <span class="dv">0</span>) {</span>
+<span id="cb5-15"><a href="#cb5-15"></a></span>
+<span id="cb5-16"><a href="#cb5-16"></a>  <span class="do">## Generating (time-varying) mean structure mu_t</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a>  <span class="co"># Generating sequence of d_t</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a>  d_t <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
+<span id="cb5-19"><a href="#cb5-19"></a>    <span class="at">Mon =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="at">length.out =</span> n),</span>
+<span id="cb5-20"><a href="#cb5-20"></a>    <span class="at">Tue =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="at">length.out =</span> n),</span>
+<span id="cb5-21"><a href="#cb5-21"></a>    <span class="at">Wed =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="at">length.out =</span> n),</span>
+<span id="cb5-22"><a href="#cb5-22"></a>    <span class="at">Thu =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="at">length.out =</span> n),</span>
+<span id="cb5-23"><a href="#cb5-23"></a>    <span class="at">Fri =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="at">length.out =</span> n),</span>
+<span id="cb5-24"><a href="#cb5-24"></a>    <span class="at">Sat =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="at">length.out =</span> n),</span>
+<span id="cb5-25"><a href="#cb5-25"></a>    <span class="at">Sun =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">length.out =</span> n)</span>
+<span id="cb5-26"><a href="#cb5-26"></a>  ) <span class="sc">%*%</span></span>
+<span id="cb5-27"><a href="#cb5-27"></a>    dowe <span class="sc">%&gt;%</span></span>
+<span id="cb5-28"><a href="#cb5-28"></a>    <span class="fu">as.numeric</span>()</span>
+<span id="cb5-29"><a href="#cb5-29"></a></span>
+<span id="cb5-30"><a href="#cb5-30"></a>  <span class="co"># Generating sequence of h_t (if amp = 0, h_t = c)</span></span>
+<span id="cb5-31"><a href="#cb5-31"></a>  h_t <span class="ot">&lt;-</span> c <span class="sc">+</span> amp<span class="sc">*</span><span class="fu">cos</span>((<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">/</span><span class="dv">7</span>)<span class="sc">*</span>((<span class="dv">1</span><span class="sc">:</span>n) <span class="sc">-</span> peak_shift))</span>
+<span id="cb5-32"><a href="#cb5-32"></a></span>
+<span id="cb5-33"><a href="#cb5-33"></a>  <span class="co"># Adding d_t and h_t together for extra capabilities</span></span>
+<span id="cb5-34"><a href="#cb5-34"></a>  mu_t <span class="ot">&lt;-</span> d_t <span class="sc">+</span> h_t</span>
+<span id="cb5-35"><a href="#cb5-35"></a></span>
+<span id="cb5-36"><a href="#cb5-36"></a>  <span class="do">## Generating stochastic component a_t</span></span>
+<span id="cb5-37"><a href="#cb5-37"></a>  <span class="co"># Setting the seed</span></span>
+<span id="cb5-38"><a href="#cb5-38"></a>  <span class="fu">set.seed</span>(seed)</span>
+<span id="cb5-39"><a href="#cb5-39"></a></span>
+<span id="cb5-40"><a href="#cb5-40"></a>  <span class="co"># Making the list of model specifications</span></span>
+<span id="cb5-41"><a href="#cb5-41"></a>  l_model <span class="ot">=</span> <span class="fu">list</span>(<span class="at">ar =</span> ar,</span>
+<span id="cb5-42"><a href="#cb5-42"></a>                 <span class="at">ma =</span> ma,</span>
+<span id="cb5-43"><a href="#cb5-43"></a>                 <span class="at">sar =</span> sar,</span>
+<span id="cb5-44"><a href="#cb5-44"></a>                 <span class="at">sma =</span> sma,</span>
+<span id="cb5-45"><a href="#cb5-45"></a>                 <span class="at">iorder =</span> iorder,</span>
+<span id="cb5-46"><a href="#cb5-46"></a>                 <span class="at">siorder =</span> siorder,</span>
+<span id="cb5-47"><a href="#cb5-47"></a>                 <span class="at">nseasons =</span> <span class="dv">7</span>,</span>
+<span id="cb5-48"><a href="#cb5-48"></a>                 <span class="at">sigma2 =</span> sigma2</span>
+<span id="cb5-49"><a href="#cb5-49"></a>  )</span>
+<span id="cb5-50"><a href="#cb5-50"></a></span>
+<span id="cb5-51"><a href="#cb5-51"></a>  <span class="co"># simulating the data</span></span>
+<span id="cb5-52"><a href="#cb5-52"></a>  <span class="cf">if</span> (<span class="fu">sum</span>(<span class="fu">abs</span>(<span class="fu">as.numeric</span>(l_model))) <span class="sc">&gt;</span> <span class="dv">7</span> <span class="sc">+</span> sigma2)</span>
+<span id="cb5-53"><a href="#cb5-53"></a>    a_t <span class="ot">&lt;-</span> sarima<span class="sc">::</span><span class="fu">sim_sarima</span>(<span class="at">n =</span> n,</span>
+<span id="cb5-54"><a href="#cb5-54"></a>                              <span class="at">model =</span> l_model,</span>
+<span id="cb5-55"><a href="#cb5-55"></a>                              <span class="at">n.start =</span> burnin)</span>
+<span id="cb5-56"><a href="#cb5-56"></a>  <span class="cf">else</span></span>
+<span id="cb5-57"><a href="#cb5-57"></a>    a_t <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n <span class="sc">+</span> burnin,</span>
+<span id="cb5-58"><a href="#cb5-58"></a>                 <span class="at">mean =</span> <span class="dv">0</span>,</span>
+<span id="cb5-59"><a href="#cb5-59"></a>                 <span class="at">sd =</span> <span class="fu">sqrt</span>(sigma2)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-60"><a href="#cb5-60"></a>    <span class="fu">tail</span>(n)</span>
+<span id="cb5-61"><a href="#cb5-61"></a></span>
+<span id="cb5-62"><a href="#cb5-62"></a>  <span class="do">## Making the complete time series</span></span>
+<span id="cb5-63"><a href="#cb5-63"></a>  y_t <span class="ot">&lt;-</span> mu_t <span class="sc">+</span> a_t</span>
+<span id="cb5-64"><a href="#cb5-64"></a>  <span class="fu">return</span>(y_t)</span>
+<span id="cb5-65"><a href="#cb5-65"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="sec-sim-shiny" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="sec-sim-shiny"><span class="header-section-number">1.3</span> Shiny app</h2>
+<p>To be completed later.</p>
+</section>
+</section>
+<section id="sec-analysis" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Analyzing time series data</h1>
+<section id="sec-modeling" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="sec-modeling"><span class="header-section-number">2.1</span> Modeling time series</h2>
+<p>We use a wrapper function</p>
+</section>
+<section id="sec-fitting" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="sec-fitting"><span class="header-section-number">2.2</span> Fitting models to the whole dataset</h2>
+</section>
+<section id="sec-results" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="sec-results"><span class="header-section-number">2.3</span> Results</h2>
+<!-- -->
+
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb6" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">---</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="an">title:</span><span class="co"> "We Cycle"</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="an">subtitle:</span><span class="co"> "Supplementary materials"</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="an">author:</span><span class="co"> "MH Manuel Haqiqatkhah"</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="an">format:</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="co">  html:</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="co">    code-fold: true</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="co">    code-tools: true</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="co">    code-overflow: scroll</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="co">    output-file: "index.html"</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="co">    code-line-numbers: true</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co">    toc: true</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="co">    toc-location: left</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="co">    number-sections: true</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="co">    number-offset: -1</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a><span class="co">    link-external-newwindow: true</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="co">    toc-depth: 5</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a><span class="co">    self-contained: false</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a><span class="co">    self-contained-math: false</span></span>
+<span id="cb6-20"><a href="#cb6-20"></a><span class="co">    code-summary: "Click to expand the code"</span></span>
+<span id="cb6-21"><a href="#cb6-21"></a><span class="co">    anchor-sections: true</span></span>
+<span id="cb6-22"><a href="#cb6-22"></a><span class="co">    reference-location: document</span></span>
+<span id="cb6-23"><a href="#cb6-23"></a><span class="co">    citation-location: document</span></span>
+<span id="cb6-24"><a href="#cb6-24"></a><span class="co">    theme:</span></span>
+<span id="cb6-25"><a href="#cb6-25"></a><span class="co">      light: litera</span></span>
+<span id="cb6-26"><a href="#cb6-26"></a><span class="co">      dark: darkly</span></span>
+<span id="cb6-27"><a href="#cb6-27"></a><span class="co">    # comments:</span></span>
+<span id="cb6-28"><a href="#cb6-28"></a><span class="co">    #   hypothesis: true</span></span>
+<span id="cb6-29"><a href="#cb6-29"></a><span class="co">  pdf:</span></span>
+<span id="cb6-30"><a href="#cb6-30"></a><span class="co">    number-sections: true</span></span>
+<span id="cb6-31"><a href="#cb6-31"></a><span class="co">    number-depth: 8</span></span>
+<span id="cb6-32"><a href="#cb6-32"></a><span class="co">    #number-offset: -1</span></span>
+<span id="cb6-33"><a href="#cb6-33"></a><span class="co">    toc: true</span></span>
+<span id="cb6-34"><a href="#cb6-34"></a><span class="co">    output-file: Code documentations</span></span>
+<span id="cb6-35"><a href="#cb6-35"></a><span class="co">    toc-depth: 8</span></span>
+<span id="cb6-36"><a href="#cb6-36"></a><span class="co">## For html</span></span>
+<span id="cb6-37"><a href="#cb6-37"></a><span class="an">execute:</span></span>
+<span id="cb6-38"><a href="#cb6-38"></a><span class="co">  enabled: true</span></span>
+<span id="cb6-39"><a href="#cb6-39"></a><span class="co">  eval: false</span></span>
+<span id="cb6-40"><a href="#cb6-40"></a><span class="co">  echo: true</span></span>
+<span id="cb6-41"><a href="#cb6-41"></a><span class="co">  include: true</span></span>
+<span id="cb6-42"><a href="#cb6-42"></a><span class="co">  warning: false</span></span>
+<span id="cb6-43"><a href="#cb6-43"></a><span class="co">  error: false</span></span>
+<span id="cb6-44"><a href="#cb6-44"></a><span class="co">  freeze: auto</span></span>
+<span id="cb6-45"><a href="#cb6-45"></a><span class="co">  cache: refresh</span></span>
+<span id="cb6-46"><a href="#cb6-46"></a><span class="co">## For pdf</span></span>
+<span id="cb6-47"><a href="#cb6-47"></a><span class="co"># execute:</span></span>
+<span id="cb6-48"><a href="#cb6-48"></a><span class="co">#   enabled: true</span></span>
+<span id="cb6-49"><a href="#cb6-49"></a><span class="co">#   echo: false</span></span>
+<span id="cb6-50"><a href="#cb6-50"></a><span class="co">#   include: false</span></span>
+<span id="cb6-51"><a href="#cb6-51"></a><span class="co">#   warning: false</span></span>
+<span id="cb6-52"><a href="#cb6-52"></a><span class="co">#   error: false</span></span>
+<span id="cb6-53"><a href="#cb6-53"></a><span class="co">#   freeze: auto</span></span>
+<span id="cb6-54"><a href="#cb6-54"></a><span class="co">#   cache: refresh</span></span>
+<span id="cb6-55"><a href="#cb6-55"></a><span class="an">editor:</span><span class="co"> visual</span></span>
+<span id="cb6-56"><a href="#cb6-56"></a><span class="co"># bibliography: references.bib</span></span>
+<span id="cb6-57"><a href="#cb6-57"></a><span class="co">---</span></span>
+<span id="cb6-58"><a href="#cb6-58"></a></span>
+<span id="cb6-59"><a href="#cb6-59"></a><span class="fu"># Introduction {#sec-intro}</span></span>
+<span id="cb6-60"><a href="#cb6-60"></a></span>
+<span id="cb6-61"><a href="#cb6-61"></a>This document contains reproducible code of the manuscript on weekly patterns and dynamics.</span>
+<span id="cb6-62"><a href="#cb6-62"></a>Please cite as</span>
+<span id="cb6-63"><a href="#cb6-63"></a></span>
+<span id="cb6-64"><a href="#cb6-64"></a><span class="at">&gt; citation info</span></span>
+<span id="cb6-65"><a href="#cb6-65"></a></span>
+<span id="cb6-66"><a href="#cb6-66"></a>This document has two main sections:</span>
+<span id="cb6-67"><a href="#cb6-67"></a></span>
+<span id="cb6-68"><a href="#cb6-68"></a>In @sec-foundations (corresponding to Sections 1 and 2 of the paper), we show functions used for making the visualizations (@sec-visualization) and generating simulated data the data (@sec-simulation), and we provide the Shiny app accompanying the paper (@sec-sim-shiny).</span>
+<span id="cb6-69"><a href="#cb6-69"></a></span>
+<span id="cb6-70"><a href="#cb6-70"></a>In @sec-analysis (corresponding to Sections 3 and 4 of the paper) we provide the code for analyzing individual time series according to different models within a single function (@sec-modeling), and show the code used to run the study on the empirical data (@sec-fitting), and the code used to report the results (@sec-results).</span>
+<span id="cb6-71"><a href="#cb6-71"></a></span>
+<span id="cb6-72"><a href="#cb6-72"></a>Since we have not permission to share the empirical data used in the study, we store the individual model fits in the <span class="in">`fits`</span> folder within this repository, and their aggregated summaries in the <span class="in">`summaries`</span> folder.</span>
+<span id="cb6-73"><a href="#cb6-73"></a></span>
+<span id="cb6-74"><a href="#cb6-74"></a>To replicate the study from the scratch, you should first either clone the repository (using <span class="in">`git clone https://github.com/psyguy/WeCycle.git`</span>) or <span class="co">[</span><span class="ot">download the repository as a zip file</span><span class="co">](https://github.com/psyguy/WeCycle/archive/refs/heads/main.zip)</span> and extract it on your machine.</span>
+<span id="cb6-75"><a href="#cb6-75"></a>Then you can sequentially run the <span class="in">`.R`</span> files you find in the <span class="in">`scripts`</span> folder.</span>
+<span id="cb6-76"><a href="#cb6-76"></a>Instead of running the scripts separately, if you have <span class="co">[</span><span class="ot">Quarto installed</span><span class="co">](https://quarto.org/docs/get-started/)</span>, you can also compile <span class="in">`index.qmd`</span> located in the root directory using Quarto .</span>
+<span id="cb6-77"><a href="#cb6-77"></a></span>
+<span id="cb6-80"><a href="#cb6-80"></a><span class="in">```{r}</span></span>
+<span id="cb6-81"><a href="#cb6-81"></a><span class="co">#| label: setup</span></span>
+<span id="cb6-82"><a href="#cb6-82"></a><span class="co">#| echo: false</span></span>
+<span id="cb6-83"><a href="#cb6-83"></a><span class="co">#| include: false</span></span>
+<span id="cb6-84"><a href="#cb6-84"></a><span class="co">#| eval: true</span></span>
+<span id="cb6-85"><a href="#cb6-85"></a><span class="co">#| cache: false</span></span>
+<span id="cb6-86"><a href="#cb6-86"></a><span class="co">#| freeze: false</span></span>
+<span id="cb6-87"><a href="#cb6-87"></a></span>
+<span id="cb6-88"><a href="#cb6-88"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb6-89"><a href="#cb6-89"></a></span>
+<span id="cb6-90"><a href="#cb6-90"></a>scripts <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> <span class="st">"scripts/"</span>,</span>
+<span id="cb6-91"><a href="#cb6-91"></a>                      <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-92"><a href="#cb6-92"></a></span>
+<span id="cb6-93"><a href="#cb6-93"></a><span class="fu">sapply</span>(scripts, knitr<span class="sc">::</span>read_chunk)</span>
+<span id="cb6-94"><a href="#cb6-94"></a><span class="in">```</span></span>
+<span id="cb6-95"><a href="#cb6-95"></a></span>
+<span id="cb6-98"><a href="#cb6-98"></a><span class="in">```{r}</span></span>
+<span id="cb6-99"><a href="#cb6-99"></a><span class="co">#| include: false</span></span>
+<span id="cb6-100"><a href="#cb6-100"></a><span class="co">#| echo: false</span></span>
+<span id="cb6-101"><a href="#cb6-101"></a><span class="co">#| eval: false</span></span>
+<span id="cb6-102"><a href="#cb6-102"></a></span>
+<span id="cb6-103"><a href="#cb6-103"></a><span class="sc">&lt;</span><span class="er">&lt;</span>load_packages<span class="sc">&gt;</span><span class="er">&gt;</span></span>
+<span id="cb6-104"><a href="#cb6-104"></a><span class="in">```</span></span>
+<span id="cb6-105"><a href="#cb6-105"></a></span>
+<span id="cb6-106"><a href="#cb6-106"></a><span class="fu"># Foundations {#sec-foundations}</span></span>
+<span id="cb6-107"><a href="#cb6-107"></a></span>
+<span id="cb6-108"><a href="#cb6-108"></a>The time series $y_t$ needs to be in a data.frame (which, let us call <span class="in">`df`</span>) with at least three columns:</span>
+<span id="cb6-109"><a href="#cb6-109"></a></span>
+<span id="cb6-110"><a href="#cb6-110"></a><span class="ss">-   </span><span class="in">`t`</span>: indicating the time of the measurement</span>
+<span id="cb6-111"><a href="#cb6-111"></a></span>
+<span id="cb6-112"><a href="#cb6-112"></a><span class="ss">-   </span><span class="in">`y`</span>: the value $y_t$ on time t</span>
+<span id="cb6-113"><a href="#cb6-113"></a></span>
+<span id="cb6-114"><a href="#cb6-114"></a><span class="ss">-   </span><span class="in">`weekday`</span> (or <span class="in">`weekday_num`</span>): the name (or number) of the weekday corresponding to t.</span>
+<span id="cb6-115"><a href="#cb6-115"></a>    In the case of the former, it should be in the form of capitalized three letter codes (<span class="in">`"Mon"`</span>, <span class="in">`"Tue"`</span>, ..., <span class="in">`"Sun"`</span>).</span>
+<span id="cb6-116"><a href="#cb6-116"></a>    Note that we consider Monday to be the first day of the week, and Sunday be the 0th/7th day of the week.</span>
+<span id="cb6-117"><a href="#cb6-117"></a></span>
+<span id="cb6-118"><a href="#cb6-118"></a>The column <span class="in">`weekday`</span> (and <span class="in">`weekday_num`</span>) can be generated if the date (e.g., as <span class="in">`date`</span>) is included in <span class="in">`df`</span>, using <span class="in">`lubridate::wday`</span> and setting:</span>
+<span id="cb6-119"><a href="#cb6-119"></a></span>
+<span id="cb6-122"><a href="#cb6-122"></a><span class="in">```{r}</span></span>
+<span id="cb6-123"><a href="#cb6-123"></a><span class="co">#| code-fold: show</span></span>
+<span id="cb6-124"><a href="#cb6-124"></a></span>
+<span id="cb6-125"><a href="#cb6-125"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb6-126"><a href="#cb6-126"></a>  <span class="fu">mutate</span>(<span class="at">weekday =</span> lubridate<span class="sc">::</span><span class="fu">wday</span>(date,</span>
+<span id="cb6-127"><a href="#cb6-127"></a>                                   <span class="at">week_start =</span> <span class="dv">1</span>,</span>
+<span id="cb6-128"><a href="#cb6-128"></a>                                   <span class="at">label =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-129"><a href="#cb6-129"></a>         <span class="at">weekday_num =</span> lubridate<span class="sc">::</span><span class="fu">wday</span>(date,</span>
+<span id="cb6-130"><a href="#cb6-130"></a>                                       <span class="at">week_start =</span> <span class="dv">1</span>,</span>
+<span id="cb6-131"><a href="#cb6-131"></a>                                       <span class="at">label =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb6-132"><a href="#cb6-132"></a><span class="in">```</span></span>
+<span id="cb6-133"><a href="#cb6-133"></a></span>
+<span id="cb6-134"><a href="#cb6-134"></a>The missing values in the time series should be explicitly indicated with <span class="in">`NA`</span> in the dataframe---that is, we should have a row for each time point---which can be achieved by:</span>
+<span id="cb6-135"><a href="#cb6-135"></a></span>
+<span id="cb6-138"><a href="#cb6-138"></a><span class="in">```{r}</span></span>
+<span id="cb6-139"><a href="#cb6-139"></a><span class="co">#| code-fold: show</span></span>
+<span id="cb6-140"><a href="#cb6-140"></a></span>
+<span id="cb6-141"><a href="#cb6-141"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb6-142"><a href="#cb6-142"></a>  <span class="fu">right_join</span>(<span class="fu">data.frame</span>(<span class="at">t =</span> <span class="fu">min</span>(df<span class="sc">$</span>t)<span class="sc">:</span><span class="fu">max</span>(df<span class="sc">$</span>t)),</span>
+<span id="cb6-143"><a href="#cb6-143"></a>             <span class="at">by =</span> <span class="st">"t"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-144"><a href="#cb6-144"></a>  <span class="fu">arrange</span>(t)</span>
+<span id="cb6-145"><a href="#cb6-145"></a><span class="in">```</span></span>
+<span id="cb6-146"><a href="#cb6-146"></a></span>
+<span id="cb6-147"><a href="#cb6-147"></a><span class="fu">## Time series visualizations {#sec-visualization}</span></span>
+<span id="cb6-148"><a href="#cb6-148"></a></span>
+<span id="cb6-149"><a href="#cb6-149"></a>The visualizations shown in discussed in the paper were plotted row-by-row using the function <span class="in">`plot_row()`</span> which uses a the columns in <span class="in">`df`</span> to generate a 1-row plot including the six plot we explained in the paper.</span>
+<span id="cb6-150"><a href="#cb6-150"></a></span>
+<span id="cb6-151"><a href="#cb6-151"></a>::: callout-warning</span>
+<span id="cb6-152"><a href="#cb6-152"></a><span class="fu">## Issues with `plot_row()`</span></span>
+<span id="cb6-153"><a href="#cb6-153"></a></span>
+<span id="cb6-154"><a href="#cb6-154"></a>The DOWE plot is incorrect; could not debug it yet.</span>
+<span id="cb6-155"><a href="#cb6-155"></a>:::</span>
+<span id="cb6-156"><a href="#cb6-156"></a></span>
+<span id="cb6-159"><a href="#cb6-159"></a><span class="in">```{r}</span></span>
+<span id="cb6-160"><a href="#cb6-160"></a><span class="co">#| eval: true</span></span>
+<span id="cb6-161"><a href="#cb6-161"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb6-162"><a href="#cb6-162"></a></span>
+<span id="cb6-163"><a href="#cb6-163"></a><span class="sc">&lt;</span><span class="er">&lt;</span>plot_row<span class="sc">&gt;</span><span class="er">&gt;</span></span>
+<span id="cb6-164"><a href="#cb6-164"></a><span class="in">```</span></span>
+<span id="cb6-165"><a href="#cb6-165"></a></span>
+<span id="cb6-166"><a href="#cb6-166"></a>By default, the titles (what each plot shows) and the labels under the horizontal axes of plots are ommited from the output (because of the default arguments <span class="in">`remove_titles = TRUE`</span> and <span class="in">`remove_xlab = TRUE`</span>).</span>
+<span id="cb6-167"><a href="#cb6-167"></a>The other default values used in the plotting argumentsare (especially the dimensions) makes the plots render in good proportions when the plot is saved with a <span class="in">`.svg`</span> (good for putting in Word or online) or <span class="in">`.pdf`</span> (good for LaTeX manuscripts) the width is 35cm and the height is around 5-5.5cm.</span>
+<span id="cb6-168"><a href="#cb6-168"></a></span>
+<span id="cb6-169"><a href="#cb6-169"></a>When plotting more than two rows, it is suggested to set the top and bottom rows to have 10% larger height.</span>
+<span id="cb6-170"><a href="#cb6-170"></a>For instance, to make a plot with three rows, it is advised to set</span>
+<span id="cb6-171"><a href="#cb6-171"></a></span>
+<span id="cb6-174"><a href="#cb6-174"></a><span class="in">```{r}</span></span>
+<span id="cb6-175"><a href="#cb6-175"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb6-176"><a href="#cb6-176"></a></span>
+<span id="cb6-177"><a href="#cb6-177"></a>l_p <span class="ot">&lt;-</span> cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(</span>
+<span id="cb6-178"><a href="#cb6-178"></a>  <span class="fu">plot_row</span>(df1, <span class="at">remove_titles =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb6-179"><a href="#cb6-179"></a>  <span class="fu">plot_row</span>(df2),</span>
+<span id="cb6-180"><a href="#cb6-180"></a>  <span class="fu">plot_row</span>(df3, <span class="at">remove_xlab =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb6-181"><a href="#cb6-181"></a>  <span class="at">rel_heights =</span> <span class="fu">c</span>(<span class="fl">1.1</span>, <span class="dv">1</span>, <span class="fl">1.1</span>),</span>
+<span id="cb6-182"><a href="#cb6-182"></a>  <span class="at">ncol =</span> <span class="dv">1</span></span>
+<span id="cb6-183"><a href="#cb6-183"></a>)</span>
+<span id="cb6-184"><a href="#cb6-184"></a></span>
+<span id="cb6-185"><a href="#cb6-185"></a><span class="fu">ggsave</span>(</span>
+<span id="cb6-186"><a href="#cb6-186"></a>  <span class="st">"fig-3rows"</span>,</span>
+<span id="cb6-187"><a href="#cb6-187"></a>  l_p,</span>
+<span id="cb6-188"><a href="#cb6-188"></a>  <span class="at">width =</span> <span class="dv">35</span>,</span>
+<span id="cb6-189"><a href="#cb6-189"></a>  <span class="at">height =</span> <span class="fl">5.5</span><span class="sc">*</span><span class="dv">3</span>,</span>
+<span id="cb6-190"><a href="#cb6-190"></a>  <span class="at">units =</span> <span class="st">"cm"</span></span>
+<span id="cb6-191"><a href="#cb6-191"></a>)</span>
+<span id="cb6-192"><a href="#cb6-192"></a><span class="in">```</span></span>
+<span id="cb6-193"><a href="#cb6-193"></a></span>
+<span id="cb6-194"><a href="#cb6-194"></a><span class="fu">## Simulating time series {#sec-simulation}</span></span>
+<span id="cb6-195"><a href="#cb6-195"></a></span>
+<span id="cb6-196"><a href="#cb6-196"></a>Pure time series (i.e., without time index and weekday) are generated using <span class="in">`m_sim()`</span> that generate $y_t = \mu_t + a_t$ by adding a deterministic vector <span class="in">`mu_t`</span> to a stochastic time series <span class="in">`a_t`</span>.</span>
+<span id="cb6-197"><a href="#cb6-197"></a>generated from a random seed set by <span class="in">`seed`</span> argument.</span>
+<span id="cb6-198"><a href="#cb6-198"></a>The arguments <span class="in">`burnin`</span> indicate the number of samples thrown away as bur-in samples.</span>
+<span id="cb6-199"><a href="#cb6-199"></a></span>
+<span id="cb6-200"><a href="#cb6-200"></a>The function generates $\mu_t$ based on the weekday means (day-of-week effects) as a vector <span class="in">`dowe`</span> (default: all zeros), and can adds a harmonic wave with overal mean <span class="in">`c`</span> (default: 0), amplitude <span class="in">`amp`</span> (default: 0), and peak shift <span class="in">`peak_shift`</span> (default: 1, for Monday).</span>
+<span id="cb6-201"><a href="#cb6-201"></a>Default values entail a mean structure $\mu_t = c$, and by setting nonzero values to either <span class="in">`dowe`</span> or <span class="in">`amp`</span>, <span class="in">`mu_t`</span> will get the detailed $\mu_t = D_t$ or harmonic $\mu_t = H_t$ mean structures.</span>
+<span id="cb6-202"><a href="#cb6-202"></a>In the function we allow combining the mean structures, to allow users investigate the effect of adding a harmonic wave on top of a currently set DOWE, or changing deviating DOWEs of a few days beyond the harmonic wave,</span>
+<span id="cb6-203"><a href="#cb6-203"></a></span>
+<span id="cb6-204"><a href="#cb6-204"></a>The stochastic component $a_t$ is generated using <span class="in">`sarima::sim_sarima()`</span>; since this function cannot generate white noise process, if no SAR<span class="sc">\[</span>I<span class="sc">\]</span>MA component is specified, <span class="in">`a_t`</span> is generated manually.</span>
+<span id="cb6-205"><a href="#cb6-205"></a>In this function we allow including non-seasonal and seasonal differencing in the model (not discussed in the paper, but implemented in the Shiny app).</span>
+<span id="cb6-206"><a href="#cb6-206"></a></span>
+<span id="cb6-209"><a href="#cb6-209"></a><span class="in">```{r}</span></span>
+<span id="cb6-210"><a href="#cb6-210"></a><span class="co">#| eval: true</span></span>
+<span id="cb6-211"><a href="#cb6-211"></a></span>
+<span id="cb6-212"><a href="#cb6-212"></a><span class="sc">&lt;</span><span class="er">&lt;</span>m_sim<span class="sc">&gt;</span><span class="er">&gt;</span></span>
+<span id="cb6-213"><a href="#cb6-213"></a><span class="in">```</span></span>
+<span id="cb6-214"><a href="#cb6-214"></a></span>
+<span id="cb6-215"><a href="#cb6-215"></a><span class="fu">## Shiny app {#sec-sim-shiny}</span></span>
+<span id="cb6-216"><a href="#cb6-216"></a></span>
+<span id="cb6-217"><a href="#cb6-217"></a>To be completed later.</span>
+<span id="cb6-218"><a href="#cb6-218"></a></span>
+<span id="cb6-219"><a href="#cb6-219"></a><span class="fu"># Analyzing time series data {#sec-analysis}</span></span>
+<span id="cb6-220"><a href="#cb6-220"></a></span>
+<span id="cb6-221"><a href="#cb6-221"></a><span class="fu">## Modeling time series {#sec-modeling}</span></span>
+<span id="cb6-222"><a href="#cb6-222"></a></span>
+<span id="cb6-223"><a href="#cb6-223"></a>We use a wrapper function</span>
+<span id="cb6-224"><a href="#cb6-224"></a></span>
+<span id="cb6-225"><a href="#cb6-225"></a><span class="fu">## Fitting models to the whole dataset {#sec-fitting}</span></span>
+<span id="cb6-226"><a href="#cb6-226"></a></span>
+<span id="cb6-227"><a href="#cb6-227"></a><span class="fu">## Results {#sec-results}</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>

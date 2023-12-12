@@ -1,0 +1,213 @@
+---
+title: "We Cycle"
+subtitle: "Supplementary materials"
+author: "MH Manuel Haqiqatkhah"
+format:
+  html:
+    code-fold: true
+    code-tools: true
+    code-overflow: scroll
+    output-file: "index.html"
+    code-line-numbers: true
+    toc: true
+    toc-location: left
+    number-sections: true
+    number-offset: -1
+    link-external-newwindow: true
+    toc-depth: 5
+    self-contained: false
+    self-contained-math: false
+    code-summary: "Click to expand the code"
+    anchor-sections: true
+    reference-location: document
+    citation-location: document
+    theme:
+      light: litera
+      dark: darkly
+    # comments:
+    #   hypothesis: true
+  pdf:
+    number-sections: true
+    number-depth: 8
+    #number-offset: -1
+    toc: true
+    output-file: Code documentations
+    toc-depth: 8
+## For html
+execute:
+  enabled: true
+  eval: false
+  echo: true
+  include: true
+  warning: false
+  error: false
+  freeze: auto
+  cache: refresh
+## For pdf
+# execute:
+#   enabled: true
+#   echo: false
+#   include: false
+#   warning: false
+#   error: false
+#   freeze: auto
+#   cache: refresh
+editor: visual
+# bibliography: references.bib
+---
+
+# Introduction {#sec-intro}
+
+This document contains reproducible code of the manuscript on weekly patterns and dynamics.
+Please cite as
+
+> citation info
+
+This document has two main sections:
+
+In @sec-foundations (corresponding to Sections 1 and 2 of the paper), we show functions used for making the visualizations (@sec-visualization) and generating simulated data the data (@sec-simulation), and we provide the Shiny app accompanying the paper (@sec-sim-shiny).
+
+In @sec-analysis (corresponding to Sections 3 and 4 of the paper) we provide the code for analyzing individual time series according to different models within a single function (@sec-modeling), and show the code used to run the study on the empirical data (@sec-fitting), and the code used to report the results (@sec-results).
+
+Since we have not permission to share the empirical data used in the study, we store the individual model fits in the `fits` folder within this repository, and their aggregated summaries in the `summaries` folder.
+
+To replicate the study from the scratch, you should first either clone the repository (using `git clone https://github.com/psyguy/WeCycle.git`) or [download the repository as a zip file](https://github.com/psyguy/WeCycle/archive/refs/heads/main.zip) and extract it on your machine.
+Then you can sequentially run the `.R` files you find in the `scripts` folder.
+Instead of running the scripts separately, if you have [Quarto installed](https://quarto.org/docs/get-started/), you can also compile `index.qmd` located in the root directory using Quarto .
+
+```{r}
+#| label: setup
+#| echo: false
+#| include: false
+#| eval: true
+#| cache: false
+#| freeze: false
+
+library(knitr)
+
+scripts <- list.files(path = "scripts/",
+                      full.names = TRUE)
+
+sapply(scripts, knitr::read_chunk)
+```
+
+```{r}
+#| include: false
+#| echo: false
+#| eval: false
+
+<<load_packages>>
+```
+
+# Foundations {#sec-foundations}
+
+The time series $y_t$ needs to be in a data.frame (which, let us call `df`) with at least three columns:
+
+-   `t`: indicating the time of the measurement
+
+-   `y`: the value $y_t$ on time t
+
+-   `weekday` (or `weekday_num`): the name (or number) of the weekday corresponding to t.
+    In the case of the former, it should be in the form of capitalized three letter codes (`"Mon"`, `"Tue"`, ..., `"Sun"`).
+    Note that we consider Monday to be the first day of the week, and Sunday be the 0th/7th day of the week.
+
+The column `weekday` (and `weekday_num`) can be generated if the date (e.g., as `date`) is included in `df`, using `lubridate::wday` and setting:
+
+```{r}
+#| code-fold: show
+
+df <- df %>% 
+  mutate(weekday = lubridate::wday(date,
+                                   week_start = 1,
+                                   label = TRUE),
+         weekday_num = lubridate::wday(date,
+                                       week_start = 1,
+                                       label = FALSE))
+```
+
+The missing values in the time series should be explicitly indicated with `NA` in the dataframe---that is, we should have a row for each time point---which can be achieved by:
+
+```{r}
+#| code-fold: show
+
+df <- df %>%
+  right_join(data.frame(t = min(df$t):max(df$t)),
+             by = "t") %>% 
+  arrange(t)
+```
+
+## Time series visualizations {#sec-visualization}
+
+The visualizations shown in discussed in the paper were plotted row-by-row using the function `plot_row()` which uses a the columns in `df` to generate a 1-row plot including the six plot we explained in the paper.
+
+::: callout-warning
+## Issues with `plot_row()`
+
+The DOWE plot is incorrect; could not debug it yet.
+:::
+
+```{r}
+#| eval: true
+#| code-fold: true
+
+<<plot_row>>
+```
+
+By default, the titles (what each plot shows) and the labels under the horizontal axes of plots are ommited from the output (because of the default arguments `remove_titles = TRUE` and `remove_xlab = TRUE`).
+The other default values used in the plotting argumentsare (especially the dimensions) makes the plots render in good proportions when the plot is saved with a `.svg` (good for putting in Word or online) or `.pdf` (good for LaTeX manuscripts) the width is 35cm and the height is around 5-5.5cm.
+
+When plotting more than two rows, it is suggested to set the top and bottom rows to have 10% larger height.
+For instance, to make a plot with three rows, it is advised to set
+
+```{r}
+#| code-fold: false
+
+l_p <- cowplot::plot_grid(
+  plot_row(df1, remove_titles = FALSE),
+  plot_row(df2),
+  plot_row(df3, remove_xlab = FALSE),
+  rel_heights = c(1.1, 1, 1.1),
+  ncol = 1
+)
+
+ggsave(
+  "fig-3rows",
+  l_p,
+  width = 35,
+  height = 5.5*3,
+  units = "cm"
+)
+```
+
+## Simulating time series {#sec-simulation}
+
+Pure time series (i.e., without time index and weekday) are generated using `m_sim()` that generate $y_t = \mu_t + a_t$ by adding a deterministic vector `mu_t` to a stochastic time series `a_t`.
+generated from a random seed set by `seed` argument.
+The arguments `burnin` indicate the number of samples thrown away as bur-in samples.
+
+The function generates $\mu_t$ based on the weekday means (day-of-week effects) as a vector `dowe` (default: all zeros), and can adds a harmonic wave with overal mean `c` (default: 0), amplitude `amp` (default: 0), and peak shift `peak_shift` (default: 1, for Monday).
+Default values entail a mean structure $\mu_t = c$, and by setting nonzero values to either `dowe` or `amp`, `mu_t` will get the detailed $\mu_t = D_t$ or harmonic $\mu_t = H_t$ mean structures.
+In the function we allow combining the mean structures, to allow users investigate the effect of adding a harmonic wave on top of a currently set DOWE, or changing deviating DOWEs of a few days beyond the harmonic wave,
+
+The stochastic component $a_t$ is generated using `sarima::sim_sarima()`; since this function cannot generate white noise process, if no SAR\[I\]MA component is specified, `a_t` is generated manually.
+In this function we allow including non-seasonal and seasonal differencing in the model (not discussed in the paper, but implemented in the Shiny app).
+
+```{r}
+#| eval: true
+
+<<m_sim>>
+```
+
+## Shiny app {#sec-sim-shiny}
+
+To be completed later.
+
+# Analyzing time series data {#sec-analysis}
+
+## Modeling time series {#sec-modeling}
+
+We use a wrapper function
+
+## Fitting models to the whole dataset {#sec-fitting}
+
+## Results {#sec-results}
