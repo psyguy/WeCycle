@@ -12,6 +12,9 @@
 # Empirical data
 data_private/
 
+# Fit files (that contain raw data)
+fits/
+
 # Example code in package build process
 *-Ex.R
 

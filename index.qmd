@@ -210,4 +210,21 @@ We use a wrapper function
 
 ## Fitting models to the whole dataset {#sec-fitting}
 
+```{r}
+#| eval: false
+
+d_w <- readRDS("data_private/d_w")
+d_pa <- d_w %>%
+  filter(item == "avg.pa") %>%
+  mutate(
+    weekday = lubridate::wday(date,
+                              week_start = 1,
+                              label = TRUE),
+    weekday_num = lubridate::wday(date,
+                                  week_start = 1,
+                                  label = FALSE)
+  ) %>%
+  select(id, t, y, date, weekday, weekday_num)
+```
+
 ## Results {#sec-results}
