@@ -1,28 +1,56 @@
+
+# Reading and cleaning the empirical data ---------------------------------
+
+# Reading the complete dataset (cleaned earlier)
+d_w <- readRDS("data_private/d_w.rds")
+
+# Extracting the relevant item (PA) and making DOW columns
+d_pa <- d_w %>%
+  filter(item == "avg.pa") %>%
+  mutate(
+    weekday = lubridate::wday(date,
+                              week_start = 1,
+                              label = TRUE),
+    weekday_num = lubridate::wday(date,
+                                  week_start = 1,
+                                  label = FALSE)
+    ) %>% select(id, t, y, weekday, weekday_num)
+
+# Saving the relevant empirical data
+saveRDS(d_pa, "data_private/d_pa.rds")
+
+# Running the fitting and estimation --------------------------------------
+
+# Initialization
 Sys.setenv("OMP_THREAD_LIMIT" = 46)
 options(warn = -1)
-
-library(doFuture)
 library(future)
+library(doFuture)
+
+# Reading the empirical data
+d_pa <- readRDS("data_private/d_pa.rds")
+
+# Making the table of conditions (i.e, model orders etc.)
+conditions_table <- expand.grid(
+  id = 1:98,
+  mu = c("c", "d", "h"),
+  ar = c(0, 1),
+  ma = c(0, 1),
+  sar = c(0, 1),
+  sma = c(0, 1)
+)
+
+# Launching parallel computation
 registerDoFuture()
-# plan("multicore")
-# cl <- parallel::makeCluster(46)
 plan("multisession",
      workers = 46)
 
-
-table_conditions <- expand.grid(id = 1:98,
-                                mu = c("c", "d", "h"),
-                                ar = c(0,1),
-                                ma = c(0,1),
-                                sar = c(0,1),
-                                sma = c(0,1))
-
+# Running the fitting and estimation in parallel
 Sys.time()
+fit_logs <- foreach(i = 1:nrow(conditions_table)) %dopar% {
 
-fit_logs <- foreach(i = 1:nrow(table_conditions)) %dopar% {
-
-  t_c <- table_conditions[i,]
-
+  t_c <- conditions_table[i, ]
+  # Getting the data
   d_pa_i <- d_pa %>% filter(id == t_c$id)
 
   dump <- tryCatch({
@@ -36,114 +64,168 @@ fit_logs <- foreach(i = 1:nrow(table_conditions)) %dopar% {
            ",",
            t_c$sma,
            ")") %>%
-    m_fit(d_pa_i,
-          .,
-          id = t_c$id,
-          save_fit = TRUE,
-          save_est = TRUE)
-  }, error=function(e) NULL)
+      m_fit(
+        d_pa_i,
+        .,
+        id = t_c$id,
+        save_fit = TRUE,
+        save_est = TRUE
+      )
+  }, error = function(e)
+    NULL)
 
-      paste(i,
-            "done at",
-            Sys.time()) %>%
-        print()
-    }
-
+  paste(i,
+        "done at",
+        Sys.time()) %>%
+    print()
+}
 Sys.time()
 
-#
-# registerDoFuture()
-# plan("multisession",
-#      workers = 46)
-#
-# fit_files <- list.files("fits", pattern = ".rds")
-#
-# # for(i in 1:length(fit_files[1:50])){
-# #
-# #   %>%
-# #     mutate(id = id_,
-# #            model = paste(model_what_, collapse = " "),
-# #            .before = 1) %>%
-# #     mutate(time_taken = (Sys.time() - time_start) %>%
-# #              as.numeric() %>%
-# #              round(4))
-# #
-# #   paste(id_,
-# #         paste(model_what_, collapse = " "),
-# #         "took",
-# #         df_tmp$time_taken,
-# #         "seconds") %>%
-# #     print()
-# #   df <- rbind(df, df_tmp)
-# #
-# # }
-#
-#
-# Sys.time()
-#
-# fits_raw <-
-#   foreach(i = 1:length(fit_files),
-#           # .combine = rbind,
-#           .errorhandling = 'remove') %dopar% {
-#             print(i)
-#             ff <- readRDS(paste0(output_dir,
-#                            "/",
-#                            fit_files[i]))
-#             ff$filename <- fit_files[i]
-#             ff
-#           }
-#
-# Sys.time()
-#
-# saveRDS(fits_raw,
-#         "fits_raw_all-combinations_2023-06-12.rds")
-#
-# # information_criteria <-
-# #
-# #   foreach(
-# #     i = 1:length(fit_files),
-# #     .combine = rbind,
-# #     .errorhandling = 'remove'
-# #   ) %dopar% {
-# #
-# #     dd <- readRDS(paste0(output_dir,
-# #                          "/",
-# #                          fit_files[i]))
-# #     dd$information_criteria %>%
-# #       as.data.frame() %>%
-# #       mutate(file_name = fit_files[i],
-# #              time_taken = dd$time_taken) %>%
-# #       mutate(id = file_name %>%
-# #                gsub(".*_id-", "", .) %>%
-# #                gsub("_model.*", "", .),
-# #              model = file_name %>%
-# #                gsub(".*_model-", "", .) %>%
-# #                gsub(".rds", "", .) %>%
-# #                gsub("-", " ", .)
-# #       )
-# #   }
-#
-#
-# d <- readRDS("fits/item-avg.pa_id-1_model-harmonic-ar-ma-sar-sma.rds")
-#
-#
-# xx <- information_criteria %>%
-#   select(-AIC.1, -ll_abs) %>%
-#   filter(!grepl("dif",model)) %>%
-#   ungroup() %>%
-#   pivot_longer(cols = AIC:BIC,
-#                names_to = "criterion_name",
-#                values_to = "criterion_value") %>%
-#   group_by(criterion_name, id) %>%
-#   # filter(rank(x, ties.method="first")==1)
-#   slice_min(order_by =criterion_value) %>%
-# # %>%
-#   # filter(criterion_name == "AICc") %>%
-#   # pull(model) %>%
-#   ungroup() %>%
-#   select(model, criterion_name) %>%
-#   table()
-#
-# round(xx/.98,1)
-#
-# colSums(xx)
+
+# Harvesting the estimates from est_* files -------------------------------
+
+# Listing the estimated files
+est_files <- list.files("ests", pattern = ".rds", full.names = TRUE)
+
+# Launching parallel computation
+registerDoFuture()
+plan("multisession",
+     workers = 46)
+
+# Running the harvest
+Sys.time()
+harvest <- foreach(
+  i = 1:length(est_files),
+  .combine = rbind,
+  .errorhandling = 'remove'
+) %dopar% {
+  file_name <- est_files[i]
+  ee <- readRDS(file_name)
+  mu <- gsub(".*_([chd])\\+.*",
+             "\\1",
+             file_name)
+
+  nums <- file_name %>%
+    str_extract_all("\\d+") %>%
+    unlist() %>%
+    as.numeric()
+
+  harv <- ee$estimates %>%
+    cbind(
+      id = nums[1],
+      mu = mu,
+      ar = nums[2],
+      ma = nums[3],
+      sar = nums[4],
+      sma = nums[5],
+      .
+    ) %>%
+    cbind(ee$information_criteria)
+  harv
+}
+Sys.time()
+
+# Adding more descriptive variables to the results dataframe
+results_estimates <- harvest %>%
+  ungroup() %>%
+  mutate(
+    error_name = paste0("sarma",
+                        "(", ar, ",", ma, ")",
+                        "(", sar, ",", sma, ")"),
+    error_name_words = case_when(
+      error_name == "sarma(0,0)(0,0)" ~ "01_wn",
+      error_name == "sarma(1,0)(0,0)" ~ "02_ar(1)",
+      error_name == "sarma(0,1)(0,0)" ~ "03_ma(1)",
+      error_name == "sarma(1,1)(0,0)" ~ "04_arma(1,1)",
+      error_name == "sarma(0,0)(1,0)" ~ "05_sar(0)(1)",
+      error_name == "sarma(1,0)(1,0)" ~ "06_sar(1)(1)",
+      error_name == "sarma(0,0)(0,1)" ~ "07_sma(0)(1)",
+      error_name == "sarma(0,1)(0,1)" ~ "08_sma(1)(1)",
+      error_name == "sarma(0,0)(1,1)" ~ "09_sarma(0,0)(1,1)",
+      error_name == "sarma(0,1)(1,0)" ~ "10_sarma(0,1)(1,0)",
+      error_name == "sarma(0,1)(1,1)" ~ "11_sarma(0,1)(1,1)",
+      error_name == "sarma(1,0)(0,1)" ~ "12_sarma(1,0)(0,1)",
+      error_name == "sarma(1,0)(1,1)" ~ "13_sarma(1,0)(1,1)",
+      error_name == "sarma(1,1)(0,1)" ~ "14_sarma(1,1)(0,1)",
+      error_name == "sarma(1,1)(1,0)" ~ "15_sarma(1,1)(1,0)",
+      error_name == "sarma(1,1)(1,1)" ~ "16_sarma(1,1)(1,1)"
+    ) %>%
+      as.factor(),
+    model_name = paste0(mu, "+", error_name),
+    timescale_daily = (ar == 1 | ma == 1),
+    timescale_weekly = (sar == 1 | sma == 1),
+    error_timescale = case_when(
+      timescale_weekly ~ "weekly",
+      timescale_daily &
+        timescale_weekly ~ "daily + weekly",
+      TRUE ~ "daily"
+    ) %>%
+      factor(levels = c("daily", "weekly", "daily + weekly")),
+    model_timescale = paste0(mu, " + ", error_timescale),
+    dynamics_ar = (ar == 1 | sar == 1),
+    dynamics_ma = (ma == 1 | sma == 1),
+    error_dynamics = case_when(
+      dynamics_ar & !dynamics_ma ~ "(s)ar",
+      !dynamics_ar & dynamics_ma ~ "(s)ma",
+      dynamics_ar &
+        dynamics_ma ~ "(s)ar + (s)ma",
+      TRUE ~ "wn"
+    ) %>%
+      factor(levels = c("wn", "(s)ar", "(s)ma", "(s)ar + (s)ma")),
+    model_dynamics = paste0(mu, " + ", error_dynamics),
+    .after = sma
+  )
+
+# Saving the processed estimates & ICs extracted from est_ files
+saveRDS(harv, "results_estimates.rds")
+
+# Reporting the results ---------------------------------------------------
+
+# Reading the results dataframe
+results_estimates <- readRDS("results_estimates.rds")
+
+# Counting selected models
+r_s <- results_estimates %>%
+  filter(parameter == "sigma2") %>%
+  select(-parameter:-sig) %>%
+  group_by(id) %>%
+  mutate(
+    win_AIC = case_when(min(AIC) == AIC ~ 1,
+                        TRUE ~ 0),
+    win_AICc = case_when(min(AICc) == AICc ~ 1,
+                         TRUE ~ 0),
+    win_BIC = case_when(min(BIC) == BIC ~ 1,
+                        TRUE ~ 0)
+  ) %>%
+  group_by(across(mu:model_dynamics),
+           .add = FALSE) %>%
+  summarise(
+    n_w_AIC = sum(win_AIC),
+    n_w_AICc = sum(win_AICc),
+    n_w_BIC = sum(win_BIC)
+  )
+
+## Making the tables
+## For other ICs, change AICc to AIC or BIC
+
+# Making the detailed table with 16 rows
+xtabs(n_w_AICc  ~ error_name_words + mu, r_s)
+
+# Main body of the summarized table
+xtabs(n_w_AICc ~ error_dynamics + mu + error_timescale,
+      r_s)
+# Rows total per mu (Total a)
+xtabs(n_w_AICc ~ error_dynamics + mu,
+      r_s)
+# Rows sum all mu (Sum b)
+xtabs(n_w_AICc ~ error_dynamics,
+      r_s)
+# Columns total per mu (Total c)
+xtabs(n_w_AICc ~  error_timescale + mu ,
+      r_s)
+# Column sum all mu (Sum d)
+xtabs(n_w_AICc ~ error_timescale,
+      r_s)
+# Totals per mu
+xtabs(n_w_AICc ~ mu,
+      r_s)
