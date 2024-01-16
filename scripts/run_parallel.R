@@ -46,7 +46,7 @@ plan("multisession",
      workers = 46)
 
 # Running the fitting and estimation in parallel
-Sys.time()
+(t_start <- Sys.time())
 fit_logs <- foreach(i = 1:nrow(conditions_table)) %dopar% {
 
   t_c <- conditions_table[i, ]
@@ -79,8 +79,8 @@ fit_logs <- foreach(i = 1:nrow(conditions_table)) %dopar% {
         Sys.time()) %>%
     print()
 }
-Sys.time()
-
+(t_end <- Sys.time())
+t_end - t_start
 
 # Harvesting the estimates from est_* files -------------------------------
 
@@ -155,10 +155,10 @@ results_estimates <- harvest %>%
     timescale_daily = (ar == 1 | ma == 1),
     timescale_weekly = (sar == 1 | sma == 1),
     error_timescale = case_when(
-      timescale_weekly ~ "weekly",
+      timescale_daily & !timescale_weekly ~ "daily",
+      !timescale_daily & timescale_weekly ~ "weekly",
       timescale_daily &
-        timescale_weekly ~ "daily + weekly",
-      TRUE ~ "daily"
+        timescale_weekly ~ "daily + weekly"
     ) %>%
       factor(levels = c("daily", "weekly", "daily + weekly")),
     model_timescale = paste0(mu, " + ", error_timescale),
