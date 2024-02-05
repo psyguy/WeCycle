@@ -15,6 +15,7 @@ m_sim <- function(n = 10000,
                   siorder = 0,
                   sigma2 = 4,
                   dowe = rep(0, 7),
+                  wee = 0,
                   amp = 0,
                   peak_shift = 1,
                   burnin = 500,
@@ -34,11 +35,27 @@ m_sim <- function(n = 10000,
     dowe %>%
     as.numeric()
 
+  # Generating sequence of w_t
+  d_t <- cbind(
+    Mon = rep(c(1, 0, 0, 0, 0, 0, 0), length.out = n),
+    Tue = rep(c(0, 1, 0, 0, 0, 0, 0), length.out = n),
+    Wed = rep(c(0, 0, 1, 0, 0, 0, 0), length.out = n),
+    Thu = rep(c(0, 0, 0, 1, 0, 0, 0), length.out = n),
+    Fri = rep(c(0, 0, 0, 0, 1, 0, 0), length.out = n),
+    Sat = rep(c(0, 0, 0, 0, 0, 1, 0), length.out = n),
+    Sun = rep(c(0, 0, 0, 0, 0, 0, 1), length.out = n)
+  ) %*%
+    dowe %>%
+    as.numeric()
+
+  # Making weekday-weekend dummies matrix
+  w_t <- c(rep(c, 5), rep(c + wee, 2)) %>% rep(length.out = n)
+
   # Generating sequence of h_t (if amp = 0, h_t = c)
   h_t <- c + amp*cos((2*pi/7)*((1:n) - peak_shift))
 
   # Adding d_t and h_t together for extra capabilities
-  mu_t <- d_t + h_t
+  mu_t <- d_t + w_t + h_t
 
   ## Generating stochastic component a_t
   # Setting the seed

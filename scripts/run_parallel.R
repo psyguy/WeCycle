@@ -33,7 +33,8 @@ d_pa <- readRDS("data_private/d_pa.rds")
 # Making the table of conditions (i.e, model orders etc.)
 conditions_table <- expand.grid(
   id = 1:98,
-  mu = c("c", "d", "h"),
+  # mu = c("c", "d", "h"),
+  mu = "w", # Only the weekday-weekend model
   ar = c(0, 1),
   ma = c(0, 1),
   sar = c(0, 1),
@@ -68,6 +69,8 @@ fit_logs <- foreach(i = 1:nrow(conditions_table)) %dopar% {
         d_pa_i,
         .,
         id = t_c$id,
+        save_folder_fit = "fits_single",
+        save_folder_est = "ests_single"
         save_fit = TRUE,
         save_est = TRUE
       )
@@ -85,7 +88,7 @@ t_end - t_start
 # Harvesting the estimates from est_* files -------------------------------
 
 # Listing the estimated files
-est_files <- list.files("ests", pattern = ".rds", full.names = TRUE)
+est_files <- list.files("ests_single", pattern = ".rds", full.names = TRUE)
 
 # Launching parallel computation
 registerDoFuture()

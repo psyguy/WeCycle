@@ -20,6 +20,8 @@ m_fit <- function(d,
   mu <- "c"
   if (grepl("d", model_string, fixed = TRUE))
     mu <- "d"
+  if (grepl("w", model_string, fixed = TRUE))
+    mu <- "w"
   if (grepl("h", model_string, fixed = TRUE))
     mu <- "h"
 
@@ -54,6 +56,14 @@ m_fit <- function(d,
       Fri = rep(c(0, 0, 0, 0, 1, 0, 0), length.out = n),
       Sat = rep(c(0, 0, 0, 0, 0, 1, 0), length.out = n),
       Sun = rep(c(0, 0, 0, 0, 0, 0, 1), length.out = n)
+    )
+
+  # Making weekday-weekend dummies matrix
+  if (mu == "w")
+    mu_t <- cbind(
+      # Weekday = rep(c(1, 1, 1, 1, 1, 0, 0), length.out = n),
+      c = rep(c(1, 1, 1, 1, 1, 1, 1), length.out = n),
+      Weekend = rep(c(0, 0, 0, 0, 0, 1, 1), length.out = n)
     )
 
   # Making the harmonic matrix

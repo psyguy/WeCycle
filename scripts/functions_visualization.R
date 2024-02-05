@@ -1,7 +1,7 @@
 ## @knitr plot_row
 
 plot_row <- function(d = NULL,
-                     title = "Profile",
+                     title = NULL,
                      subtitle = NULL,
                      remove_titles = TRUE,
                      remove_xlab = TRUE,
@@ -339,8 +339,8 @@ plot_row <- function(d = NULL,
   if (remove_xlab)
     p_out <- p_out & xlab(NULL)
 
-  p_out <- p_out + plot_annotation(title = title,
-                                   subtitle = subtitle)
+  # p_out <- p_out + plot_annotation(title = title,
+  #                                  subtitle = subtitle)
 
   return(p_out)
 

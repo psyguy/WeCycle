@@ -1,0 +1,11 @@
+id,mu,ar,ma,sar,sma,error_name,error_name_words,model_name,timescale_daily,timescale_weekly,error_timescale,model_timescale,dynamics_ar,dynamics_ma,error_dynamics,model_dynamics,item,AICc,win_AICc
+1,h,1,1,0,0,"sarma(1,1)(0,0)","04_arma(1,1)","h+sarma(1,1)(0,0)",TRUE,FALSE,daily,h + daily,TRUE,TRUE,(s)ar + (s)ma,h + (s)ar + (s)ma,pa,112.72615382280351,1
+10,c,1,0,0,0,"sarma(1,0)(0,0)",02_ar(1),"c+sarma(1,0)(0,0)",TRUE,FALSE,daily,c + daily,TRUE,FALSE,(s)ar,c + (s)ar,pa,223.80497954987527,1
+2,d,1,0,1,1,"sarma(1,0)(1,1)","13_sarma(1,0)(1,1)","d+sarma(1,0)(1,1)",TRUE,TRUE,daily + weekly,d + daily + weekly,TRUE,TRUE,(s)ar + (s)ma,d + (s)ar + (s)ma,pa,153.3700023928014,1
+3,c,0,0,0,0,"sarma(0,0)(0,0)",01_wn,"c+sarma(0,0)(0,0)",FALSE,FALSE,wn,c + wn,FALSE,FALSE,wn,c + wn,pa,165.63663854259795,1
+4,c,1,0,0,0,"sarma(1,0)(0,0)",02_ar(1),"c+sarma(1,0)(0,0)",TRUE,FALSE,daily,c + daily,TRUE,FALSE,(s)ar,c + (s)ar,pa,200.17740665322293,1
+5,h,1,0,0,0,"sarma(1,0)(0,0)",02_ar(1),"h+sarma(1,0)(0,0)",TRUE,FALSE,daily,h + daily,TRUE,FALSE,(s)ar,h + (s)ar,pa,192.1011878240948,1
+6,d,1,0,1,1,"sarma(1,0)(1,1)","13_sarma(1,0)(1,1)","d+sarma(1,0)(1,1)",TRUE,TRUE,daily + weekly,d + daily + weekly,TRUE,TRUE,(s)ar + (s)ma,d + (s)ar + (s)ma,pa,204.79031974385205,1
+7,c,0,0,0,0,"sarma(0,0)(0,0)",01_wn,"c+sarma(0,0)(0,0)",FALSE,FALSE,wn,c + wn,FALSE,FALSE,wn,c + wn,pa,111.44687692895306,1
+8,d,0,0,1,1,"sarma(0,0)(1,1)","09_sarma(0,0)(1,1)","d+sarma(0,0)(1,1)",FALSE,TRUE,weekly,d + weekly,TRUE,TRUE,(s)ar + (s)ma,d + (s)ar + (s)ma,pa,204.99950725457808,1
+9,d,1,1,1,1,"sarma(1,1)(1,1)","16_sarma(1,1)(1,1)","d+sarma(1,1)(1,1)",TRUE,TRUE,daily + weekly,d + daily + weekly,TRUE,TRUE,(s)ar + (s)ma,d + (s)ar + (s)ma,pa,111.36982907865344,1
