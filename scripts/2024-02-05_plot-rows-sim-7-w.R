@@ -37,8 +37,8 @@ fig_folder <- "figures"
 
 fixed_mu <- 0 # 1
 fixed_dowe <- c(0.5, 1, 1, -2, 1, 3, -1)
-fixed_c <- 0.5
-fixed_wee <- 2.5
+fixed_c <- 0.5/5
+fixed_wee <- 0.8#0.75#4/2
 fixed_amp <- 0 # 1.5
 fixed_peak_shift <- 6 #2
 
@@ -46,17 +46,17 @@ fixed_peak_shift <- 6 #2
 # Fixed parameters for the daily processes --------------------------------
 
 ## Fixed sigma2 for daily, weekly, and seasonal models
-fixed_daily_sigma2_c <- 9
-fixed_daily_sigma2_d <- 9
-fixed_daily_sigma2_h <- 9
+fixed_daily_sigma2_c <- 9/9
+fixed_daily_sigma2_d <- 9/9
+fixed_daily_sigma2_h <- 9/9
 
-fixed_weekly_sigma2_c <- 9
-fixed_weekly_sigma2_d <- 9
-fixed_weekly_sigma2_h <- 9
+fixed_weekly_sigma2_c <- 9/9
+fixed_weekly_sigma2_d <- 9/9
+fixed_weekly_sigma2_h <- 9/9
 
-fixed_seasonal_sigma2_c <- 9 # fixed_daily_sigma2_c + fixed_weekly_sigma2_c
-fixed_seasonal_sigma2_d <- 9 # fixed_daily_sigma2_d + fixed_weekly_sigma2_d
-fixed_seasonal_sigma2_h <- 9 # fixed_daily_sigma2_h + fixed_weekly_sigma2_h
+fixed_seasonal_sigma2_c <- 9/9 # fixed_daily_sigma2_c + fixed_weekly_sigma2_c
+fixed_seasonal_sigma2_d <- 9/9 # fixed_daily_sigma2_d + fixed_weekly_sigma2_d
+fixed_seasonal_sigma2_h <- 9/9 # fixed_daily_sigma2_h + fixed_weekly_sigma2_h
 
 ## Fixed ar parameter for daily models with c, d, and h means
 fixed_daily_ma_c <- 0.6

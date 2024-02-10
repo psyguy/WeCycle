@@ -37,21 +37,19 @@ plot_row <- function(d = NULL,
   # Making plots ------------------------------------------------------------
 
 
+  weekdays <- c("Mon",
+                "Tue",
+                "Wed",
+                "Thu",
+                "Fri",
+                "Sat",
+                "Sun")
 
   if (!is.data.frame(d))
     d <- data.frame(
       t = 1:length(d),
       y = d,
-      weekday = rep(
-        c("Mon",
-          "Tue",
-          "Wed",
-          "Thu",
-          "Fri",
-          "Sat",
-          "Sun"),
-        length.out = length(d)
-      ),
+      weekday = rep(weekdays, length.out = length(d)),
       week_num = rep(1:ceiling(length(d) / 7), each = 7)[1:length(d)]
     )
 
@@ -62,7 +60,8 @@ plot_row <- function(d = NULL,
              .add = TRUE) %>%
     mutate(weekday_mean = mean(y,
                                na.rm = TRUE)) %>%
-    ungroup()
+    ungroup() %>%
+    mutate(weekday = weekday %>% factor(weekdays))
 
   # Making sure the limits are not off
   ymin <- min(min(d$y), ymin)
@@ -339,8 +338,8 @@ plot_row <- function(d = NULL,
   if (remove_xlab)
     p_out <- p_out & xlab(NULL)
 
-  # p_out <- p_out + plot_annotation(title = title,
-  #                                  subtitle = subtitle)
+  p_out <- p_out + plot_annotation(title = title,
+                                   subtitle = subtitle)
 
   return(p_out)
 
