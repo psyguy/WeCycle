@@ -1,8 +1,6 @@
 ## @knitr data_prep
 
 
-
-
 ## @knitr m_sim
 
 m_sim <- function(n = 10000,
@@ -23,7 +21,7 @@ m_sim <- function(n = 10000,
 
   ## Generating (time-varying) mean structure mu_t
   # Generating sequence of d_t
-  d_t <- cbind(
+  d_t_0 <- cbind(
     Mon = rep(c(1, 0, 0, 0, 0, 0, 0), length.out = n),
     Tue = rep(c(0, 1, 0, 0, 0, 0, 0), length.out = n),
     Wed = rep(c(0, 0, 1, 0, 0, 0, 0), length.out = n),
@@ -35,27 +33,15 @@ m_sim <- function(n = 10000,
     dowe %>%
     as.numeric()
 
-  # Generating sequence of w_t
-  d_t <- cbind(
-    Mon = rep(c(1, 0, 0, 0, 0, 0, 0), length.out = n),
-    Tue = rep(c(0, 1, 0, 0, 0, 0, 0), length.out = n),
-    Wed = rep(c(0, 0, 1, 0, 0, 0, 0), length.out = n),
-    Thu = rep(c(0, 0, 0, 1, 0, 0, 0), length.out = n),
-    Fri = rep(c(0, 0, 0, 0, 1, 0, 0), length.out = n),
-    Sat = rep(c(0, 0, 0, 0, 0, 1, 0), length.out = n),
-    Sun = rep(c(0, 0, 0, 0, 0, 0, 1), length.out = n)
-  ) %*%
-    dowe %>%
-    as.numeric()
-
+  ## Generating sequence of w_t_0, which is w_t with c = 0
   # Making weekday-weekend dummies matrix
-  w_t <- c(rep(c, 5), rep(c + wee, 2)) %>% rep(length.out = n)
+  w_t_0 <- c(rep(0, 5), rep(wee, 2)) %>% rep(length.out = n)
 
-  # Generating sequence of h_t (if amp = 0, h_t = c)
-  h_t <- c + amp*cos((2*pi/7)*((1:n) - peak_shift))
+  # Generating sequence of h_t_0, which is h_t with c = 0
+  h_t_0 <- amp*cos((2*pi/7)*((1:n) - peak_shift))
 
-  # Adding d_t and h_t together for extra capabilities
-  mu_t <- d_t + w_t + h_t
+  # Adding d_t, h_t, and w_t together for extra capabilities
+  mu_t <- c + d_t_0 + w_t_0 + h_t_0
 
   ## Generating stochastic component a_t
   # Setting the seed

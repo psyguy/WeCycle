@@ -1,6 +1,87 @@
-## @knitr plot_row
+## @knitr plot_hist
 
-plot_row <- function(d = NULL,
+plot_hist <- function(d = NULL,
+                      title = " ",
+                      subtitle = NULL,
+                      remove_titles = TRUE,
+                      remove_xlab = TRUE,
+                      scale_rel = 0.9,
+                      max_acf.lag = 35,
+                      max_period = 15,
+                      ymin = 0-0.1,
+                      ymax = 4+0.1,
+                      max_t = 140,
+                      max_weeks = 25,
+                      col_weekly = "lightsteelblue4",
+                      col_dowe.line = "mediumorchid4",
+                      col_dowe.point = "deeppink1",
+                      col_ts = "lightsteelblue4",
+                      col_ts.point = "cornflowerblue",
+                      col_hist = "cornflowerblue",
+                      col_acf = "darkolivegreen3",
+                      col_pacf = "darkorange3",
+                      col_spec = "darkorchid4",
+                      col_hlines = "dimgray") {
+
+  # Transforming the input to an appropriate dataframe
+  d <- d %>% data_shaper()
+
+  # Making sure the optimal theme is in place
+  theme_set(ggthemes::theme_few())
+
+  breaks_y <- seq(floor(ymin),
+                  ceiling(ymax))
+  # Making sure the limits are not off
+  ymin <- min(min(d$y), ymin)
+  ymax <- max(max(d$y), ymax)
+
+  p_out <- d %>%
+    mutate(group_mean = mean(y,
+                             na.rm = TRUE)) %>%
+    group_by(weekday,
+             .add = TRUE) %>%
+    mutate(weekday_mean = mean(y,
+                               na.rm = TRUE)) %>%
+    ungroup() %>%
+    ggplot() +
+    aes(x = y) +
+    geom_histogram(
+      aes(y = after_stat(ndensity)),
+      center = 0,
+      bins = 40,
+      fill = col_hist
+    ) +
+    geom_vline(
+      aes(xintercept = group_mean),
+      linetype = "dashed",
+      linewidth = rel(scale_rel * 0.2)
+    ) +
+    labs(subtitle = "Distribution",
+         x = "y",
+         y = title) +
+    scale_x_continuous(breaks = breaks_y) +
+    xlim(ymin, ymax) +
+    theme(
+      panel.grid.major = element_blank(),
+      # axis.title.y = element_blank(),
+      axis.ticks.y = element_blank(),
+      axis.line.y = element_blank(),
+      axis.title.y = element_text(size = rel(1.4*scale_rel)),
+      axis.text.y = element_blank()
+    )
+
+  if (remove_titles)
+    p_out <- p_out + theme(plot.subtitle = element_blank())
+  if (remove_xlab)
+    p_out <- p_out + xlab(NULL)
+
+  p_out
+
+}
+
+## @knitr plot_seq
+
+plot_seq <- function(d = NULL,
                      title = NULL,
                      subtitle = NULL,
                      remove_titles = TRUE,
@@ -10,7 +91,7 @@ plot_row <- function(d = NULL,
                      max_period = 15,
                      ymin = 0-0.1,
                      ymax = 4+0.1,
-                     max_t = 175,
+                     max_t = 140,
                      max_weeks = 25,
                      col_weekly = "lightsteelblue4",
                      col_dowe.line = "mediumorchid4",
@@ -23,37 +104,19 @@ plot_row <- function(d = NULL,
                      col_spec = "darkorchid4",
                      col_hlines = "dimgray") {
 
+
+  # Transforming the input to an appropriate dataframe
+  d <- d %>% data_shaper()
+
   # Making sure the optimal theme is in place
   theme_set(ggthemes::theme_few())
 
-  breaks_acf <- seq(0,
-                    max_acf.lag,
-                    by = 14 * floor(max_acf.lag / 7 / 3))
-  breaks_y <- seq(floor(ymin),
-                  ceiling(ymax)
-  )
-  scaleFUN <- function(x) sprintf("%.1f", x)
+  # Making sure the limits are not off
+  ymin <- min(min(d$y), ymin)
+  ymax <- max(max(d$y), ymax)
 
-  # Making plots ------------------------------------------------------------
-
-
-  weekdays <- c("Mon",
-                "Tue",
-                "Wed",
-                "Thu",
-                "Fri",
-                "Sat",
-                "Sun")
-
-  if (!is.data.frame(d))
-    d <- data.frame(
-      t = 1:length(d),
-      y = d,
-      weekday = rep(weekdays, length.out = length(d)),
-      week_num = rep(1:ceiling(length(d) / 7), each = 7)[1:length(d)]
-    )
-
-  d <- d %>%
+  p_out <- d %>%
+    data_shaper() %>%
     mutate(group_mean = mean(y,
                              na.rm = TRUE)) %>%
     group_by(weekday,
@@ -61,20 +124,6 @@ plot_row <- function(d = NULL,
     mutate(weekday_mean = mean(y,
                                na.rm = TRUE)) %>%
     ungroup() %>%
-    mutate(weekday = weekday %>% factor(weekdays))
-
-  # Making sure the limits are not off
-  ymin <- min(min(d$y), ymin)
-  ymax <- max(max(d$y), ymax)
-
-  # Imputing the missing values using seasonal Kalman smoothing
-  y_imp <- d$y %>%
-    ts(frequency = 7) %>%
-    imputeTS::na_kalman()
-  #######################
-  ## Plotting time series
-  #######################
-  p_ts <- d %>%
     ggplot() +
     aes(x = t,
         y = y) +
@@ -98,41 +147,58 @@ plot_row <- function(d = NULL,
          x = "t",
          y = "y")
 
-  ######################
-  ## Plotting histograms
-  ######################
-  p_hist <- d %>%
-    ggplot() +
-    aes(x = y) +
-    geom_histogram(
-      aes(y = after_stat(ndensity)),
-      center = 0,
-      bins = 40,
-      fill = col_hist
-    ) +
-    geom_vline(
-      aes(xintercept = group_mean),
-      linetype = "dashed",
-      linewidth = rel(scale_rel * 0.2)
-    ) +
-    labs(subtitle = "Distribution",
-         x = "y",
-         y = "") +
-    scale_x_continuous(breaks = breaks_y) +
-    xlim(ymin, ymax) +
-    theme(
-      panel.grid.major = element_blank(),
-      axis.title.y = element_blank(),
-      axis.ticks.y = element_blank(),
-      axis.line.y = element_blank(),
-      axis.text.y = element_blank()
-    )
+  if (remove_titles)
+    p_out <- p_out + theme(plot.subtitle = element_blank())
+  if (remove_xlab)
+    p_out <- p_out + xlab(NULL)
+  p_out
 
+}
 
-  ################
-  ## Plotting DOWE
-  ################
-  p_dowe <- d %>%
+## @knitr plot_dowe
+
+plot_dowe <- function(d = NULL,
+                      title = NULL,
+                      subtitle = NULL,
+                      remove_titles = TRUE,
+                      remove_xlab = TRUE,
+                      scale_rel = 0.9,
+                      max_acf.lag = 35,
+                      max_period = 15,
+                      ymin = 0-0.1,
+                      ymax = 4+0.1,
+                      max_t = 140,
+                      max_weeks = 25,
+                      col_weekly = "lightsteelblue4",
+                      col_dowe.line = "mediumorchid4",
+                      col_dowe.point = "deeppink1",
+                      col_ts = "lightsteelblue4",
+                      col_ts.point = "cornflowerblue",
+                      col_hist = "cornflowerblue",
+                      col_acf = "darkolivegreen3",
+                      col_pacf = "darkorange3",
+                      col_spec = "darkorchid4",
+                      col_hlines = "dimgray") {
+
+  # Transforming the input to an appropriate dataframe
+  d <- d %>% data_shaper()
+
+  # Making sure the optimal theme is in place
+  theme_set(ggthemes::theme_few())
+
+  # Making sure the limits are not off
+  ymin <- min(min(d$y), ymin)
+  ymax <- max(max(d$y), ymax)
+
+  p_out <- d %>%
+    data_shaper() %>%
+    mutate(group_mean = mean(y,
+                             na.rm = TRUE)) %>%
+    group_by(weekday,
+             .add = TRUE) %>%
+    mutate(weekday_mean = mean(y,
+                               na.rm = TRUE)) %>%
+    ungroup() %>%
     group_by(week_num,
              .add = FALSE) %>%
     filter(week_num <= max_weeks) %>%
@@ -174,10 +240,49 @@ plot_row <- function(d = NULL,
           axis.text.x = element_text(angle = 90,
                                      size = rel(1 * scale_rel)))
 
+  if (remove_titles)
+    p_out <- p_out + theme(plot.subtitle = element_blank())
+  if (remove_xlab)
+    p_out <- p_out + xlab(NULL)
+  p_out
 
-  ##############################
-  ## Plotting frequency spectrum
-  ##############################
+}
+
+## @knitr plot_psd
+
+plot_psd <- function(d = NULL,
+                     title = NULL,
+                     subtitle = NULL,
+                     remove_titles = TRUE,
+                     remove_xlab = TRUE,
+                     scale_rel = 0.9,
+                     max_acf.lag = 35,
+                     max_period = 15,
+                     ymin = 0-0.1,
+                     ymax = 4+0.1,
+                     max_t = 140,
+                     max_weeks = 25,
+                     col_weekly = "lightsteelblue4",
+                     col_dowe.line = "mediumorchid4",
+                     col_dowe.point = "deeppink1",
+                     col_ts = "lightsteelblue4",
+                     col_ts.point = "cornflowerblue",
+                     col_hist = "cornflowerblue",
+                     col_acf = "darkolivegreen3",
+                     col_pacf = "darkorange3",
+                     col_spec = "darkorchid4",
+                     col_hlines = "dimgray") {
+
+  # Transforming the input to an appropriate dataframe
+  d <- d %>% data_shaper()
+
+  # Making sure the optimal theme is in place
+  theme_set(ggthemes::theme_few())
+
+  # Imputing the missing values using seasonal Kalman smoothing
+  y_imp <- d$y %>%
+    ts(frequency = 7) %>%
+    imputeTS::na_kalman()
 
   ## Calculate Fourier components
   y_imp <- y_imp %>% as.numeric
@@ -197,7 +302,7 @@ plot_row <- function(d = NULL,
 
   max_var_component <- max(df_fourier$rel_power)
 
-  p_spec <- df_fourier %>%
+  p_out <- df_fourier %>%
     ggplot() +
     aes(
       x = Period,
@@ -236,39 +341,75 @@ plot_row <- function(d = NULL,
          y = "% total power")
 
   if(max_var_component < 1)
-    max_var_component <- max_var_component +
+    p_out <- p_out +
     scale_y_continuous(breaks = c(0,1),
                        limits = c(0, 1))
-  ######################
-  ## Plotting ACF & PACF
-  ######################
+
+  if (remove_titles)
+    p_out <- p_out + theme(plot.subtitle = element_blank())
+  if (remove_xlab)
+    p_out <- p_out + xlab(NULL)
+  p_out
+
+}
+
+## @knitr plot_acf
+
+plot_acf <- function(d = NULL,
+                     title = NULL,
+                     subtitle = NULL,
+                     remove_titles = TRUE,
+                     remove_xlab = TRUE,
+                     scale_rel = 0.9,
+                     max_acf.lag = 35,
+                     max_period = 15,
+                     ymin = 0-0.1,
+                     ymax = 4+0.1,
+                     max_t = 140,
+                     max_weeks = 25,
+                     col_weekly = "lightsteelblue4",
+                     col_dowe.line = "mediumorchid4",
+                     col_dowe.point = "deeppink1",
+                     col_ts = "lightsteelblue4",
+                     col_ts.point = "cornflowerblue",
+                     col_hist = "cornflowerblue",
+                     col_acf = "darkolivegreen3",
+                     col_pacf = "darkorange3",
+                     col_spec = "darkorchid4",
+                     col_hlines = "dimgray") {
+
+  # Transforming the input to an appropriate dataframe
+  d <- d %>% data_shaper()
+
+  # Making sure the optimal theme is in place
+  theme_set(ggthemes::theme_few())
+
+  # Imputing the missing values using seasonal Kalman smoothing
+  y_imp <- d$y %>%
+    ts(frequency = 7) %>%
+    imputeTS::na_kalman()
+
+  breaks_acf <- seq(0,
+                    max_acf.lag,
+                    by = 14 * floor(max_acf.lag / 7 / 3))
 
   df_acf <- data.frame(
     lag = c(0:max_acf.lag),
     acf = stats::acf(y_imp,
                      lag.max = max_acf.lag,
-                     plot = FALSE)$acf %>% as.numeric(),
-    pacf = stats::pacf(y_imp,
-                       lag.max = max_acf.lag,
-                       plot = FALSE)$acf %>%
-      as.numeric() %>%
-      c(0, .)
-  ) %>%
-    pivot_longer(cols = acf:pacf,
-                 names_to = "kind",
-                 values_to = "value")
+                     plot = FALSE)$acf %>%
+      as.numeric()
+  )
 
-
-  p_acf <- df_acf %>%
-    filter(kind == "acf") %>%
+  p_out <- df_acf %>%
     ggplot(aes(x = lag,
-               y = value)) +
+               y = acf)) +
     geom_segment(
       aes(
         x = lag,
         xend = lag,
         y = 0,
-        yend = value
+        yend = acf
       ),
       linewidth = rel(scale_rel * 35 / max_acf.lag / 2),
       color = col_acf,
@@ -291,16 +432,72 @@ plot_row <- function(d = NULL,
       axis.title.y = element_blank()
     )
 
-  p_pacf <- df_acf %>%
-    filter(kind == "pacf") %>%
+  if (remove_titles)
+    p_out <- p_out + theme(plot.subtitle = element_blank())
+  if (remove_xlab)
+    p_out <- p_out + xlab(NULL)
+  p_out
+
+}
+
+## @knitr plot_pacf
+
+plot_pacf <- function(d = NULL,
+                      title = NULL,
+                      subtitle = NULL,
+                      remove_titles = TRUE,
+                      remove_xlab = TRUE,
+                      scale_rel = 0.9,
+                      max_acf.lag = 35,
+                      max_period = 15,
+                      ymin = 0-0.1,
+                      ymax = 4+0.1,
+                      max_t = 140,
+                      max_weeks = 25,
+                      col_weekly = "lightsteelblue4",
+                      col_dowe.line = "mediumorchid4",
+                      col_dowe.point = "deeppink1",
+                      col_ts = "lightsteelblue4",
+                      col_ts.point = "cornflowerblue",
+                      col_hist = "cornflowerblue",
+                      col_acf = "darkolivegreen3",
+                      col_pacf = "darkorange3",
+                      col_spec = "darkorchid4",
+                      col_hlines = "dimgray") {
+
+  # Transforming the input to an appropriate dataframe
+  d <- d %>% data_shaper()
+
+  # Making sure the optimal theme is in place
+  theme_set(ggthemes::theme_few())
+
+  # Imputing the missing values using seasonal Kalman smoothing
+  y_imp <- d$y %>%
+    ts(frequency = 7) %>%
+    imputeTS::na_kalman()
+
+  breaks_acf <- seq(0,
+                    max_acf.lag,
+                    by = 14 * floor(max_acf.lag / 7 / 3))
+
+  df_pacf <- data.frame(
+    lag = c(0:max_acf.lag),
+    pacf = stats::pacf(y_imp,
+                       lag.max = max_acf.lag,
+                       plot = FALSE)$acf %>%
+      as.numeric() %>%
+      c(0, .)
+  )
+
+  p_out <- df_pacf %>%
     ggplot(aes(x = lag,
-               y = value)) +
+               y = pacf)) +
     geom_segment(
       aes(
         x = lag,
         xend = lag,
         y = 0,
-        yend = value
+        yend = pacf
       ),
       linewidth = rel(scale_rel * 35 / max_acf.lag / 2),
       color = col_pacf,
@@ -315,12 +512,6 @@ plot_row <- function(d = NULL,
     scale_x_continuous(breaks = breaks_acf) +
     scale_y_continuous(breaks = c(-.5, 0, 0.5, 1),
                        limits = c(-.25, 1.1)) +
-    # theme(
-    #   axis.title.y = element_blank(),
-    #   axis.ticks.y = element_blank(),
-    #   axis.line.y = element_blank(),
-    #   axis.text.y = element_blank()
-    # ) +s
     labs(subtitle = "PACF",
          x = "Lag",
          y = "") +
@@ -329,19 +520,111 @@ plot_row <- function(d = NULL,
       axis.title.y = element_blank()
     )
 
-
-  p_out <- p_hist + p_ts + p_dowe + p_spec + p_acf + p_pacf +
-    plot_layout(widths = c(0.5, 2, 1, 1, 1, 1))
-
   if (remove_titles)
-    p_out <- p_out & theme(plot.subtitle = element_blank())
+    p_out <- p_out + theme(plot.subtitle = element_blank())
   if (remove_xlab)
-    p_out <- p_out & xlab(NULL)
-
-  p_out <- p_out + plot_annotation(title = title,
-                                   subtitle = subtitle)
-
-  return(p_out)
+    p_out <- p_out + xlab(NULL)
+  p_out
 
 }
 
+## @knitr plot_row_assembly
+
+
+plot_row_assembly <- function(list_data,
+                              list_labels = NULL,
+                              save_name = "plot-rows.pdf",
+                              save_dir = "figures",
+                              ...) {
+  n_rows <- length(list_data)
+
+  l_hist <- list()
+  l_seq <- list()
+  l_dowe <- list()
+  l_psd <- list()
+  l_acf <- list()
+  l_pacf <- list()
+
+  title_r <- NULL
+
+  for (r in 1:n_rows) {
+    d <- list_data[[r]]
+
+    if (length(list_labels) == n_rows)
+      title_r <- list_labels[[r]]
+
+    rm_titles <- TRUE
+    rm_xlab <- TRUE
+
+
+    if (r == 1) {
+      rm_titles <- FALSE
+      rm_xlab <- TRUE
+    }
+
+    if (r == n_rows) {
+      rm_titles <- TRUE
+      rm_xlab <- FALSE
+    }
+
+    if (n_rows == 1) {
+      rm_titles <- FALSE
+      rm_xlab <- FALSE
+    }
+
+
+    l_hist[[r]] <-  #label_plot(r) +
+      plot_hist(
+        d,
+        title = title_r,
+        remove_titles = rm_titles,
+        remove_xlab = rm_xlab,
+        ...
+      )
+    l_seq[[r]] <-  plot_seq(d,
+                            remove_titles = rm_titles,
+                            remove_xlab = rm_xlab,
+                            ...)
+    l_dowe[[r]] <-  plot_dowe(d,
+                              remove_titles = rm_titles,
+                              remove_xlab = rm_xlab,
+                              ...)
+    l_psd[[r]] <-  plot_psd(d,
+                            remove_titles = rm_titles,
+                            remove_xlab = rm_xlab,
+                            ...)
+    l_acf[[r]] <-  plot_acf(d,
+                            remove_titles = rm_titles,
+                            remove_xlab = rm_xlab,
+                            ...)
+    l_pacf[[r]] <-  plot_pacf(d,
+                              remove_titles = rm_titles,
+                              remove_xlab = rm_xlab,
+                              ...)
+
+  }
+
+
+  p_tot <- cowplot::plot_grid(
+    l_hist %>% wrap_plots(ncol = 1),
+    l_seq %>% wrap_plots(ncol = 1),
+    l_dowe %>% wrap_plots(ncol = 1),
+    l_psd %>% wrap_plots(ncol = 1),
+    l_acf %>% wrap_plots(ncol = 1),
+    l_pacf %>% wrap_plots(ncol = 1),
+    nrow = 1,
+    rel_widths = c(.75, 2, 1, 1, 1, 1)
+  )
+
+  if (is.character(save_name))
+    ggsave(
+      here(save_dir, save_name),
+      p_tot,
+      width = 40,
+      height = 4 * n_rows + 0.5,
+      units = "cm"
+    )
+  else
+    return(p_tot)
+
+}

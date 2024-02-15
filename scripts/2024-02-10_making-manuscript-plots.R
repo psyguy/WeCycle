@@ -74,7 +74,7 @@ l_d_sim_w <- list(
     sigma2 = fixed_daily_sigma2_d,
     # amp = fixed_amp,
     peak_shift = fixed_peak_shift
-  ) %>% data_shaper(),
+  ), # %>% data_shaper(),
   m_sim(
     c = fixed_c,
     wee = fixed_wee,
@@ -82,7 +82,7 @@ l_d_sim_w <- list(
     ma = fixed_daily_ma_h,
     # amp = fixed_amp,
     peak_shift = fixed_peak_shift
-  ) %>% data_shaper(),
+  ), # %>% data_shaper(),
   m_sim(
     c = fixed_c,
     wee = fixed_wee,
@@ -90,7 +90,7 @@ l_d_sim_w <- list(
     ar = fixed_daily_ar_h,
     # amp = fixed_amp,
     peak_shift = fixed_peak_shift
-  ) %>% data_shaper(),
+  ), # %>% data_shaper(),
   m_sim(
     c = fixed_c,
     wee = fixed_wee,
@@ -99,7 +99,7 @@ l_d_sim_w <- list(
     ma = fixed_daily_ma_h,
     # amp = fixed_amp,
     peak_shift = fixed_peak_shift
-  ) %>% data_shaper(),
+  ), # %>% data_shaper(),
   m_sim(
     c = fixed_c,
     wee = fixed_wee,
@@ -108,7 +108,7 @@ l_d_sim_w <- list(
     sma = fixed_weekly_ma_h,
     # amp = fixed_amp,
     peak_shift = fixed_peak_shift
-  ) %>% data_shaper(),
+  ), # %>% data_shaper(),
   m_sim(
     c = fixed_c,
     wee = fixed_wee,
@@ -117,7 +117,7 @@ l_d_sim_w <- list(
     sar = fixed_weekly_ar_h,
     # amp = fixed_amp,
     peak_shift = fixed_peak_shift
-  ) %>% data_shaper(),
+  ), # %>% data_shaper(),
   m_sim(
     c = fixed_c,
     wee = fixed_wee,
@@ -128,13 +128,13 @@ l_d_sim_w <- list(
     sar = fixed_weekly_ar_h,
     # amp = fixed_amp,
     peak_shift = fixed_peak_shift
-  ) %>% data_shaper()
+  ) # %>% data_shaper(),
 )
 
 plot_rows(l_d_sim_w,
           c("WN", "MA", "AR", "ARMA", "SMA", "SAR", "SARMA") %>%
             paste0("W+",.),
-          save_name = "rows-sim-7-w.pdf")
+          save_name = "rows-sim-7-w-meh.pdf")
 
 
 ## Turning warnings back on

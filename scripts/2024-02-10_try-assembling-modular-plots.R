@@ -91,6 +91,7 @@ plot_rows <- function(l_d,
       height = 4*n_rows + 0.5,
       units = "cm"
     )
+  else return(p_tot)
 
 }
 

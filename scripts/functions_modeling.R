@@ -169,7 +169,7 @@ calc_amp <- Vectorize(calc_amp)
 
 ## Calculating peak shift
 calc_peak_theta <- function(a, b) {
-  theta <- atan(b / a) + (pi / 2) * sign(a) * (sign(a) - 1)
+  theta <- atan(b / a) + (pi / 2) * sign(b) * (1 - sign(a))
   # psi <- (7*theta/(2*pi)) #%% 7
   # psi <- theta
   return(theta)
@@ -298,12 +298,14 @@ m_estimates <- function(m,
         aes(x = t,
             y = h_t,
             group = r) +
+        # Separate curves for the first 100 bootstrapped samples
         geom_line(aes(
           x = t,
           y = h_t,
           group = r,
           color = "single_curves"
         )) +
+        # Average of the separate curves the first 100 bootstrapped samples
         stat_summary(
           fun.y = mean,
           geom = "line",
@@ -311,6 +313,7 @@ m_estimates <- function(m,
           aes(group = -1, color = "mean_curve"),
           alpha = 1
         ) +
+        # Curve calculated by bootstrapping point estimates
         geom_function(
           fun = function(t)
             b_c + b_s * cos(2 * pi / 7 * (t - b_psi)),
@@ -319,15 +322,42 @@ m_estimates <- function(m,
           lwd = .5,
           alpha = 0.5
         ) +
+        geom_hline(yintercept = b_c + b_s,
+                   color = "red",
+                   linetype = "solid",
+                   lwd = 1,
+                   alpha = 0.85) +
+        geom_vline(xintercept = b_psi %% 7,
+                   color = "red",
+                   linetype = "solid",
+                   lwd = 1,
+                   alpha = 0.85) +
+        # Curve calculated by a and b point estimates without bootstrapping
         geom_function(
           fun = function(t)
-            o_est_h[1] +          o_est_h[2] * cos(t * 2 * pi / 7) + o_est_h[3] * sin(t *
-                                                                                        2 * pi / 7),
+            o_est_h[1] +
+            o_est_h[2] * cos(t * 2 * pi / 7) +
+            o_est_h[3] * sin(t * 2 * pi / 7),
           mapping = aes(color = "naive_curve"),
           linetype = "twodash",
           lwd = .5,
           alpha = 0.5
         ) +
+        geom_hline(yintercept = o_est_h[1] + sqrt(o_est_h[2]^2 + o_est_h[3]^2),
+                   color = "green",
+                   linetype = "twodash",
+                   lwd = 1,
+                   alpha = 0.85) +
+        geom_vline(xintercept = (calc_peak_theta(o_est_h[2], o_est_h[3])*7/(2*pi)) %% 7,
+                   color = "green",
+                   linetype = "twodash",
+                   lwd = 1,
+                   alpha = 0.85) +
+        geom_vline(xintercept = (atan(o_est_h[3]/o_est_h[2])*7/(2*pi)) %% 7,
+                   color = "black",
+                   linetype = "dotted",
+                   lwd = 1,
+                   alpha = 0.85)
         scale_color_manual(
           name = "Y series",
           values = c(
