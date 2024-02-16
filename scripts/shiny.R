@@ -1,10 +1,12 @@
+## @knitr shiny
+
 library(shiny)
-library(forecast)
+source(here::here("scripts/initialization.R"))
 source(here::here("scripts/functions_simulation.R"))
 source(here::here("scripts/functions_visualization.R"))
-source(here::here("scripts/0_init.R"))
-library(tidyverse)
 
+
+options(warn = -1)
 
 ui <- fluidPage(
   tags$style(
@@ -31,7 +33,7 @@ ui <- fluidPage(
           numericInput(
             "fixed_n",
             "N (x100):",
-            value = 7,
+            value = 2,
             width = '120px',
             step = 1
           )
@@ -56,10 +58,10 @@ ui <- fluidPage(
           sliderInput(
             "fixed_ar",
             NULL,
-            min = -0.95,
-            max = 0.95,
+            min = -0.9,
+            max = 0.9,
             value = 0.6,
-            step = 0.05
+            step = 0.1
           )
         ),
         column(
@@ -68,10 +70,10 @@ ui <- fluidPage(
           sliderInput(
             "fixed_ma",
             NULL,
-            min = -0.95,
-            max = 0.95,
+            min = -0.9,
+            max = 0.9,
             value = 0.5,
-            step = 0.05
+            step = 0.1
           )
         )
       ),
@@ -84,10 +86,10 @@ ui <- fluidPage(
           sliderInput(
             "fixed_sar",
             NULL,
-            min = -0.95,
-            max = 0.95,
+            min = -0.9,
+            max = 0.9,
             value = 0.2,
-            step = 0.05
+            step = 0.1
           )
         ),
         column(
@@ -96,10 +98,10 @@ ui <- fluidPage(
           sliderInput(
             "fixed_sma",
             NULL,
-            min = -0.95,
-            max = 0.95,
+            min = -0.9,
+            max = 0.9,
             value = 0.1,
-            step = 0.05
+            step = 0.1
           )
         )
       ),
@@ -170,27 +172,28 @@ server <- function(input, output) {
   output$myImage <- renderImage({
 
     p <- plot_sim_rows(fixed_c = input$fixed_c,
-             fixed_dowe = c(
-               input$Mon,
-               input$Tue,
-               input$Wed,
-               input$Thu,
-               input$Fri,
-               input$Sat,
-               input$Sun
-             )*input$Mult,
-             fixed_amp = input$fixed_amp,
-             fixed_peak_shift = input$fixed_peak_shift,
-             fixed_wee = input$fixed_wee,
-             fixed_sigma2 = input$fixed_sigma2,
-             fixed_ma = input$fixed_ma,
-             fixed_ar = input$fixed_ar,
-             fixed_sar = input$fixed_sar,
-             fixed_sma = input$fixed_sma,
-             fixed_n = input$fixed_n * 100,
-             fixed_seed = input$fixed_seed,
-             prefix = NULL,
-             file_format = "svg"
+                       fixed_dowe = c(
+                         input$Mon,
+                         input$Tue,
+                         input$Wed,
+                         input$Thu,
+                         input$Fri,
+                         input$Sat,
+                         input$Sun
+                       )*input$Mult,
+                       fixed_amp = input$fixed_amp,
+                       fixed_peak_shift = input$fixed_peak_shift,
+                       fixed_wee = input$fixed_wee,
+                       fixed_sigma2 = input$fixed_sigma2,
+                       fixed_ma = input$fixed_ma,
+                       fixed_ar = input$fixed_ar,
+                       fixed_sar = input$fixed_sar,
+                       fixed_sma = input$fixed_sma,
+                       fixed_n = input$fixed_n * 100,
+                       fixed_seed = input$fixed_seed,
+                       prefix = NULL,
+                       for_shiny = TRUE,
+                       file_format = "svg"
     )
 
     # A temp file to save the output.
@@ -203,12 +206,6 @@ server <- function(input, output) {
            width = 40,
            height = 4 * 7 + 0.5,
            units = "cm")
-    # png(outfile,
-    #     width = 200*8,
-    #     height = 200*8,
-    #     res = 72*8)
-    # print(Plot)
-    # dev.off()
 
     # Return a list containing the filename
     list(

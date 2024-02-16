@@ -628,3 +628,173 @@ plot_row_assembly <- function(list_data,
     return(p_tot)
 
 }
+
+
+## @knitr plot_sim_rows
+
+plot_sim_rows <- function(fixed_c = 0,
+                          fixed_dowe = rep(0, 7),
+                          fixed_amp = 0,
+                          fixed_peak_shift = 0,
+                          fixed_wee = 0,
+                          fixed_sigma2 = 1,
+                          fixed_ma = 0.6,
+                          fixed_ar = 0.7,
+                          fixed_sar = 0.4,
+                          fixed_sma = 0.5,
+                          fixed_n = 10000,
+                          fixed_seed = 0,
+                          prefix = "c",
+                          for_shiny = FALSE,
+                          file_format = "svg",
+                          ...
+){
+
+  if(for_shiny == TRUE)
+    l_d_sim_w <- list(
+      c = m_sim(
+        c = fixed_c,
+        sigma2 = fixed_sigma2,
+        ar = fixed_ar,
+        ma = fixed_ma,
+        sar = fixed_sar,
+        sma = fixed_sma,
+        n = fixed_n,
+        seed = fixed_seed
+      ),
+      D_t = m_sim(
+        dowe = fixed_dowe,
+        sigma2 = fixed_sigma2,
+        ar = fixed_ar,
+        ma = fixed_ma,
+        sar = fixed_sar,
+        sma = fixed_sma,
+        n = fixed_n,
+        seed = fixed_seed
+      ),
+      H_t = m_sim(
+        c = fixed_c,
+        amp = fixed_amp,
+        peak_shift = fixed_peak_shift,
+        sigma2 = fixed_sigma2,
+        ar = fixed_ar,
+        ma = fixed_ma,
+        sar = fixed_sar,
+        sma = fixed_sma,
+        n = fixed_n,
+        seed = fixed_seed
+      ),
+      W_t = m_sim(
+        c = fixed_c,
+        wee = fixed_wee,
+        sigma2 = fixed_sigma2,
+        ar = fixed_ar,
+        ma = fixed_ma,
+        sar = fixed_sar,
+        sma = fixed_sma,
+        n = fixed_n,
+        seed = fixed_seed
+      )
+    )
+
+  if(for_shiny == FALSE)
+    l_d_sim_w <- list(
+      wn = m_sim(
+        c = fixed_c,
+        dowe = fixed_dowe,
+        amp = fixed_amp,
+        peak_shift = fixed_peak_shift,
+        wee = fixed_wee,
+        sigma2 = fixed_sigma2,
+        n = fixed_n,
+        seed = fixed_seed
+      ),
+      ma = m_sim(
+        c = fixed_c,
+        dowe = fixed_dowe,
+        amp = fixed_amp,
+        peak_shift = fixed_peak_shift,
+        wee = fixed_wee,
+        sigma2 = fixed_sigma2,
+        ma = fixed_ma,
+        n = fixed_n,
+        seed = fixed_seed
+      ),
+      ar = m_sim(
+        c = fixed_c,
+        dowe = fixed_dowe,
+        amp = fixed_amp,
+        peak_shift = fixed_peak_shift,
+        wee = fixed_wee,
+        sigma2 = fixed_sigma2,
+        ar = fixed_ar,
+        n = fixed_n,
+        seed = fixed_seed
+      ),
+      arma = m_sim(
+        c = fixed_c,
+        dowe = fixed_dowe,
+        amp = fixed_amp,
+        peak_shift = fixed_peak_shift,
+        wee = fixed_wee,
+        sigma2 = fixed_sigma2,
+        ar = fixed_ar,
+        ma = fixed_ma,
+        n = fixed_n,
+        seed = fixed_seed
+      ),
+      sma = m_sim(
+        c = fixed_c,
+        dowe = fixed_dowe,
+        amp = fixed_amp,
+        peak_shift = fixed_peak_shift,
+        wee = fixed_wee,
+        sigma2 = fixed_sigma2,
+        ma = fixed_ma,
+        sma = fixed_sma,
+        n = fixed_n,
+        seed = fixed_seed
+      ),
+      sar = m_sim(
+        c = fixed_c,
+        dowe = fixed_dowe,
+        amp = fixed_amp,
+        peak_shift = fixed_peak_shift,
+        wee = fixed_wee,
+        sigma2 = fixed_sigma2,
+        ar = fixed_ar,
+        sar = fixed_sar,
+        n = fixed_n,
+        seed = fixed_seed
+      ),
+      sarma = m_sim(
+        c = fixed_c,
+        dowe = fixed_dowe,
+        amp = fixed_amp,
+        peak_shift = fixed_peak_shift,
+        wee = fixed_wee,
+        sigma2 = fixed_sigma2,
+        ar = fixed_ar,
+        ma = fixed_ma,
+        sar = fixed_sar,
+        sma = fixed_sma,
+        n = fixed_n,
+        seed = fixed_seed
+      )
+    )
+
+  save_name <- paste0("rows-sim-7-",
+                      prefix,
+                      ".",
+                      file_format)
+  if(is.null(prefix)) save_name <- NULL
+
+  plot_row_assembly(l_d_sim_w,
+                    names(l_d_sim_w) %>%
+                      paste0(prefix, "+", .) %>%
+                      toupper(),
+                    save_name = save_name,
+                    ...)
+
+}
+

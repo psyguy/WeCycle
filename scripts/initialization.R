@@ -32,7 +32,10 @@ libs_used <-
 
 libs_needed <- libs_used[!libs_used %in% installed.packages()]
 
-sapply(libs_needed, install.packages, dependencies = TRUE)
+sapply(libs_needed,
+       install.packages,
+       dependencies = TRUE,
+       repos = "https://cloud.r-project.org/")
 sapply(libs_used, require, character = TRUE)
 
 rm(libs_used, libs_needed)

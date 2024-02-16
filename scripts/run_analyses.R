@@ -1,6 +1,6 @@
 ## @knitr analyses_run_parallel
 
-source(here::here("scripts", "0_init.R"))
+source(here::here("scripts", "initialization.R"))
 source(here::here("scripts", "functions_modeling.R"))
 
 # Reading the empirical data
