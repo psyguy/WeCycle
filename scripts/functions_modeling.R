@@ -243,27 +243,28 @@ m_estimates <- function(m,
     boot_a <- boot_parameters[, "a_cos"]
     boot_b <- boot_parameters[, "b_sin"]
 
-    boot_s <- calc_amp(boot_a, boot_b)
-    boot_theta <- calc_peak_theta(boot_a, boot_b) %>%
-      as.numeric() %>% as.circular()
-    boot_theta_quantiles <- boot_theta %>%
+    boot_s <- sqrt(boot_a^2 + boot_b^2)
+    boot_psi_radian <- atan2(boot_b, boot_a) %>%
+      as.numeric() %>%
+      as.circular()
+    boot_psi_radian_quantiles <- boot_psi_radian %>%
       as.circular() %>%
       quantile(c(.025, .5, .975)) %>%
       as.numeric()
 
-    boot_psi <- boot_theta * 7 / (2 * pi)
-    boot_theta_mod <- boot_theta %% (2 * pi)
-    # plot(boot_s, boot_theta)
+    boot_psi <- boot_psi_radian * 7 / (2 * pi)
+    boot_psi_radian_mod <- boot_psi_radian %% (2 * pi)
+    # plot(boot_s, boot_psi_radian)
 
     # Bootstrapped summaries
     b_c <- mean(boot_c)
     b_s <- median(boot_s)
     b_s_sd <- sd(boot_s)
     b_s_CIs <- as.numeric(quantile(boot_s, c(0.025, 0.975)))
-    b_psi <- as.numeric(median(boot_theta)) * 7 / (2 * pi)
-    b_psi_sd <- as.numeric(sd(boot_theta)) * 7 / (2 * pi)
+    b_psi <- as.numeric(median(boot_psi_radian)) * 7 / (2 * pi)
+    b_psi_sd <- as.numeric(sd(boot_psi_radian)) * 7 / (2 * pi)
     b_psi_CIs <-
-      as.numeric(quantile(boot_theta, c(0.025, 0.975))) * 7 / (2 * pi)
+      as.numeric(quantile(boot_psi_radian, c(0.025, 0.975))) * 7 / (2 * pi)
 
     # Adding the estimates to the table
     boot_estimates <- data.frame(
@@ -383,8 +384,8 @@ m_estimates <- function(m,
   o <- list(estimates = estimates,
             information_criteria = information_criteria)
 
-  if (exists("p_boot"))
-    o$boot_plot <- p_boot
+  # if (exists("p_boot"))
+  #   o$boot_plot <- p_boot
 
   return(o)
 
