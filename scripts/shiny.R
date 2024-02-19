@@ -60,9 +60,23 @@ ui <- fluidPage(
             NULL,
             min = -0.9,
             max = 0.9,
-            value = 0.6,
-            step = 0.1
+            value = 0.45,
+            step = 0.15
           )
+          # radioButtons("fixed_ar",
+          #              NULL,
+          #              c("-0.99" = -0.99,
+          #                "-.7" = -.7,
+          #                "-0.5" = -0.5,
+          #                "-0.3" = -0.3,
+          #                "-0.1" = -0.1,
+          #                "0" = 0,
+          #                "0.1" = 0.1,
+          #                "0.3" = 0.3,
+          #                "0.5" = 0.5,
+          #                "0.7" = 0.7,
+          #                "0.99" = 0.99
+          #                ), inline=T)
         ),
         column(
           6,
@@ -161,15 +175,66 @@ ui <- fluidPage(
     ),
 
     # Plot
-    mainPanel(imageOutput(
-      "myImage", height = "150px", width = "350px"
-    ))
+    mainPanel(
+      plotOutput("myImage", height = "150px", width = "350px")
+    #   imageOutput(
+    #   "myImage", height = "150px", width = "350px"
+    # )
+    )
   )
 )
 
 
 server <- function(input, output) {
-  output$myImage <- renderImage({
+  # output$myImage <- renderImage({
+  #
+  #   p <- plot_sim_rows(fixed_c = input$fixed_c,
+  #                      fixed_dowe = c(
+  #                        input$Mon,
+  #                        input$Tue,
+  #                        input$Wed,
+  #                        input$Thu,
+  #                        input$Fri,
+  #                        input$Sat,
+  #                        input$Sun
+  #                      )*input$Mult,
+  #                      fixed_amp = input$fixed_amp,
+  #                      fixed_peak_shift = input$fixed_peak_shift,
+  #                      fixed_wee = input$fixed_wee,
+  #                      fixed_sigma2 = input$fixed_sigma2,
+  #                      fixed_ma = input$fixed_ma,
+  #                      fixed_ar = input$fixed_ar,
+  #                      fixed_sar = input$fixed_sar,
+  #                      fixed_sma = input$fixed_sma,
+  #                      fixed_n = input$fixed_n * 100,
+  #                      fixed_seed = input$fixed_seed,
+  #                      prefix = NULL,
+  #                      for_shiny = TRUE,
+  #                      file_format = "svg"
+  #   )
+  #
+  #   # A temp file to save the output.
+  #   # This file will be removed later by renderImage
+  #   outfile <- tempfile(fileext = '.png')
+  #
+  #   # Generate the PNG
+  #   ggsave(outfile,
+  #          p,
+  #          width = 40,
+  #          height = 4 * 7 + 0.5,
+  #          units = "cm")
+  #
+  #   # Return a list containing the filename
+  #   list(
+  #     src = outfile,
+  #     contentType = 'image/png',
+  #     width = 350 * 2.2,
+  #     height = 150 * 2.2,
+  #     alt = "Profile plots of simulated time series"
+  #   )
+  # }, deleteFile = TRUE)
+
+  output$myImage <- renderPlot({
 
     p <- plot_sim_rows(fixed_c = input$fixed_c,
                        fixed_dowe = c(
@@ -193,31 +258,37 @@ server <- function(input, output) {
                        fixed_seed = input$fixed_seed,
                        prefix = NULL,
                        for_shiny = TRUE,
+                       # prefix = NULL,
                        file_format = "svg"
     )
 
     # A temp file to save the output.
     # This file will be removed later by renderImage
-    outfile <- tempfile(fileext = '.png')
+    # outfile <- tempfile(fileext = '.png')
 
     # Generate the PNG
-    ggsave(outfile,
-           p,
-           width = 40,
-           height = 4 * 7 + 0.5,
-           units = "cm")
+    # ggsave(outfile,
+    #        p,
+    #        width = 40,
+    #        height = 4 * 7 + 0.5,
+    #        units = "cm")
 
-    # Return a list containing the filename
-    list(
-      src = outfile,
-      contentType = 'image/png',
-      width = 350 * 2.2,
-      height = 150 * 2.2,
-      alt = "Profile plots of simulated time series"
-    )
-  }, deleteFile = TRUE)
+  #   # Return a list containing the filename
+  #   list(
+  #     src = outfile,
+  #     contentType = 'image/png',
+  #     width = 350 * 2.2,
+  #     height = 150 * 2.2,
+  #     alt = "Profile plots of simulated time series"
+  #   )
+  # }, deleteFile = TRUE)
+
+    print(p)
+  }, width = 40 * 28.35/1.5,
+  height = (4 * 7 + 0.5) * 28.35/2) # Convert cm to pixels if needed
 
 }
+
 
 shinyApp(ui = ui, server = server)
 
