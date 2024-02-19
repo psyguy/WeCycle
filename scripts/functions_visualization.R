@@ -181,7 +181,7 @@ plot_dowe <- function(d = NULL,
                       col_hlines = "dimgray") {
 
   # Transforming the input to an appropriate dataframe
-  d <- d %>% data_shaper()
+  d <- d %>% data_shaper(minimal_output = TRUE)
 
   # Making sure the optimal theme is in place
   theme_set(ggthemes::theme_few())

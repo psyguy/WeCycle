@@ -56,19 +56,23 @@ for(batch in 1:14){
 ## @knitr plot_simulated_ts
 
 plot_sim_rows(fixed_c = 0,
-              prefix = "c")
+              prefix = "c",
+              file_format = "pdf")
 
 plot_sim_rows(fixed_dowe = c(0.1, 0.3, 0.3, -0.7, 0.3, 0.9, -0.5),
-              prefix = "d")
+              prefix = "d",
+              file_format = "pdf")
 
 plot_sim_rows(fixed_c = 0.1,
               fixed_amp = 0.8,
               fixed_peak_shift = 6,
-              prefix = "h")
+              prefix = "h",
+              file_format = "pdf")
 
 plot_sim_rows(fixed_c = 0.1,
               fixed_wee = 0.8,
-              prefix = "w")
+              prefix = "w",
+              file_format = "pdf")
 
 
 

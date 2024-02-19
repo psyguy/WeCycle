@@ -51,7 +51,7 @@ ggthemr::ggthemr("pale")
 
 ## @knitr data_shaper
 
-data_shaper <- function(d) {
+data_shaper <- function(d, minimal_output = FALSE) {
 
   weekdays <- c("Mon",
                 "Tue",
@@ -61,13 +61,15 @@ data_shaper <- function(d) {
                 "Sat",
                 "Sun")
 
-  if (!is.data.frame(d))
+  if (!is.data.frame(d)){
     d <- data.frame(
       t = 1:length(d),
       y = d,
       weekday = rep(weekdays, length.out = length(d)),
       week_num = rep(1:ceiling(length(d) / 7), each = 7)[1:length(d)]
     )
+    if(minimal_output == TRUE) return(d)
+  }
 
   if ("date" %in% colnames(d))
     d <- d %>%
@@ -116,3 +118,4 @@ data_shaper <- function(d) {
   return(d_out)
 
 }
+
